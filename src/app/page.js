@@ -1,7 +1,14 @@
 import Link from "next/link";
-import Footer from "src/components/Footer";
+import {db} from "../utils/dbConnection"
+import Footer from "../components/Footer";
 
-export default function Home() {
+
+
+export default async function Home() {
+
+        const queryLocations = await db.query(`SELECT * FROM w12_locations`);
+  console.log(await queryLocations.rows);
+
   return (
     <div>
       <section className="intro-section">
@@ -50,6 +57,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
 
       <Footer/>
     </div>

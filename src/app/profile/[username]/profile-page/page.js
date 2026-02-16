@@ -1,15 +1,20 @@
 import Header from "src/components/Header";
+import NavBar from "@/components/NavBar";
 
 export default function profilePage() {
   return(
     <>
       <Header/>
-      <ProfileBioCard/>
-      <ProfileSports/>
-      <ProfileConnections/>
       {/* this will be within the header on desktop and at the bottom with icons for app*/}
       <NavBar/>
-      {/* this will only be in the desktop version */}
+
+      <ProfileBioCard/>
+
+      <ProfileSports/>
+
+      <ProfileConnections/>
+      
+      {/* only show this for desktop screen size */}
       <Footer/>
     </>
   )

@@ -1,0 +1,53 @@
+.nav{
+    display: flex;
+    /* justify-content: space-around;
+    align-items: center;
+    background: white;
+    border-top: 1px solid #ddd */
+}
+
+/* Mobile screen size (default) */
+.nav{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}
+
+.navLink{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+}
+
+/* hide text on mobile nav */
+.label{
+    display: none
+}
+
+/* Desktop screen size */
+@media (min-width: 768px){
+    .nav{
+        position: static;
+        height: 70px;
+        border-top: none;
+        border-bottom: 1px solid #ddd
+    }
+
+    .navLink{
+        flex-direction: row;
+        gap: 8px;
+        font-size: 16px;
+    }
+
+    /* show the text on desktop */
+    .label{
+        display: inline
+    }
+}
+
+/* prevent content being hidden behind mobile nav */
+body {
+  padding-bottom: 60px; 
+}
