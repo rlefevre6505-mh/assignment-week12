@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 export default async function Home() {
 
-        const queryLocations = await db.query(`SELECT * FROM w12_locations`);
+  const queryLocations = await db.query(`SELECT * FROM w12_locations`);
   console.log(await queryLocations.rows);
 
   return (
