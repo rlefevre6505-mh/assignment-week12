@@ -4,13 +4,15 @@ export default async function profileSetupFormPageCont() {
   // pull clerk id and current date here
   const signInName = await currentUser();
   //get userID from newly created user in DB
-  const queryUser = await db.query(
-    `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
-    [signInName],
-  );
+  // const queryUser = await db.query(
+  //   `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
+  //   [signInName],
+  // );
 
   // insert formValues into appropriate tables, using userID
-  function handleSubmit() {}
+  async function handleSubmit() {
+    "use server";
+  }
 
   return (
     <form action={handleSubmit}>
