@@ -1,12 +1,14 @@
+import footerStyles from "@/styles/footer.module.css"
+
 export default function Footer(){
     return(
         <>
-        <p>Kickabout (c)</p>
+        <p className={footerStyles.p}>Kickabout (c)</p>
 
-        <div className="social-media-logos">
-            <img src="#" alt="facebook-logo"/>
-            <img src="#" alt="twitter-logo"/>
-            <img src="#" alt="instagram-logo"/>
+        <div className={footerStyles.socialMediaLogoContainer}>
+            <img src="#" alt="facebook-logo" className={footerStyles.socialMediaLogo}/>
+            <img src="#" alt="twitter-logo" className={footerStyles.socialMediaLogo}/>
+            <img src="#" alt="instagram-logo" className={footerStyles.socialMediaLogo}/>
         </div>
         </>
     )
