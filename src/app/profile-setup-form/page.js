@@ -8,6 +8,7 @@ export default async function ProfileSetupFormPage() {
   const { userId } = await auth();
   const signInName = await currentUser();
   const today = new Date();
+  console.log(typeof today);
 
   //   function setAdultAge() {
   //     const date = new Date();
@@ -39,11 +40,11 @@ export default async function ProfileSetupFormPage() {
   async function handleSubmit(rawFormData) {
     "use server";
     const formValues = {
-      clerk_id: rawFormData.get("clerk_id"),
+      clerk_id: userId,
       screen_name: rawFormData.get("screen_name"),
       dob: rawFormData.get("dob"),
       gender: rawFormData.get("gender"),
-      date: rawFormData.get("date"),
+      date: today,
       bio: rawFormData.get("bio"),
     };
 
@@ -67,8 +68,6 @@ export default async function ProfileSetupFormPage() {
   }
   return (
     <form action={handleSubmit}>
-      <label htmlFor="clerk_id"></label>
-      <input type="hidden" name="clerk_id" value={userId} />
       <label htmlFor="screen_name">
         What name would you like matched users to see?
       </label>
@@ -98,9 +97,6 @@ export default async function ProfileSetupFormPage() {
         <option value="Non-binary">Non-binary</option>
         <option value="Prefer not to say">Prefer not to say</option>
       </select>
-
-      <label htmlFor="date"></label>
-      <input type="hidden" name="date" value={today} />
 
       <label htmlFor="bio">
         {`Tell matched users a little about yourself (Optional):`}
