@@ -1,3 +1,3 @@
 export default function profileEditFormPage() {
-  return;
+  returnreturn(<h1>Profile Edit Form</h1>);
 }
