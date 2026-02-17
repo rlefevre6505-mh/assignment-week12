@@ -1,9 +1,11 @@
-.introSection{
+/* TOP SECTION */
 
+.introSection{
+    background-color: var(--colour-primary);
 }
 
 .appTitle{
-
+    color:beige;
 }
 
 .h2{
@@ -27,6 +29,7 @@
 }
 
 .aboutSection{
+    background-color: beige;
 
 }
 
@@ -39,6 +42,7 @@
 }
 
 .howItWorksSection{
+    background-color: darkcyan;
 
 }
 
@@ -60,4 +64,8 @@
 
 .cardText{
     
+}
+
+.homepageFooter{
+    background-color: darkcyan;
 }

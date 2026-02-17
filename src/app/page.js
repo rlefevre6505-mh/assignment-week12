@@ -59,7 +59,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <Footer/>
+      <section className={homepageStyles.homepageFooter}>
+        <Footer />
+      </section>
+      
     </div>
   );
 }
