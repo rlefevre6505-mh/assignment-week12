@@ -4,17 +4,8 @@
 
 import profileSportsStyle from "@/styles/profileSports.module.css"
 import SportIcon from "./SportIcon"
-
-// create array of sports names + icons
-const sportsIconData = [
-  {name: "Football", icon:"/icons/football.png"},
-  {name: "Tennis", icon:"/icons/tennis.png"},
-  {name: "Badminton", icon:"/icons/badminton.png"},
-  {name: "Basketball", icon:"/icons/basketball.png"},
-  {name: "Frisbee", icon:"/icons/frisbee.png"},
-  {name: "Running", icon:"/icons/running.png"},
-  {name: "Cycling", icon: "/icons/cycling.png"}
-];
+import { sportsIconData } from "@/data/sports";
+import {Fragment} from "react"
 
 export default function ProfileSports(){
     return(
@@ -26,14 +17,14 @@ export default function ProfileSports(){
 
             {/* TODO: BELOW .map will render all from the array - need to edit so it only renders those selected by the user */}
             {sportsIconData.map((sport)=>(
-                <>
+                <Fragment key={sport.id}>
                 <SportIcon
-                    key={sport.name}
+                    // key={sport.id}
                     name={sport.name}
                     icon={sport.icon}
                     />
                 <p>ability level goes here</p>
-                </>
+                </Fragment>
             ))}
             {/* <SportIcon className={profileSportsStyle.sportIcon}/> */}
             {/* <p className={profileSportsStyle.abilityLevel}>Ability Level</p> */}
