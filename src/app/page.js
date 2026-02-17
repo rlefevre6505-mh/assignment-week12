@@ -1,13 +1,11 @@
 import Link from "next/link";
-import {db} from "../utils/dbConnection"
+import { db } from "../utils/dbConnection";
 import Footer from "../components/Footer";
-
-
+import { SignOutButton } from "@clerk/nextjs";
 
 export default async function Home() {
-
   const queryLocations = await db.query(`SELECT * FROM w12_locations`);
-  console.log(await queryLocations.rows);
+  // console.log(await queryLocations.rows);
 
   return (
     <div>
@@ -17,18 +15,19 @@ export default async function Home() {
         <h3>Take the pressure off and make friends with Kickabout</h3>
         <Link href="/sign-up">sign up</Link>
         <Link href="/sign-in">sign in</Link>
+        <SignOutButton />
       </section>
 
       <section className="about-section">
-        <img src="#" alt="animation of people playing football together"/>
+        <img src="#" alt="animation of people playing football together" />
         <p>
-          Ever wanted to try a new hobby, but don’t know where to start?
-
-            We know it can be difficult to try something new - especially when that means joining an established club or team, often with the requirement to commit to a set schedule
-
-            That’s why we created Kickabout - so you can find like-minded people in your area who want to try the same activities as you at a beginner level.
-
-            No pressure. No competition. Just fun!
+          Ever wanted to try a new hobby, but don’t know where to start? We know
+          it can be difficult to try something new - especially when that means
+          joining an established club or team, often with the requirement to
+          commit to a set schedule That’s why we created Kickabout - so you can
+          find like-minded people in your area who want to try the same
+          activities as you at a beginner level. No pressure. No competition.
+          Just fun!
         </p>
       </section>
 
@@ -58,9 +57,7 @@ export default async function Home() {
         </div>
       </section>
 
-
-
-      <Footer/>
+      <Footer />
     </div>
   );
 }
