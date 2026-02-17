@@ -1,12 +1,12 @@
 import Link from "next/link";
-import {db} from "../utils/dbConnection"
+import { db } from "../utils/dbConnection";
 import Footer from "../components/Footer";
 import homepageStyles from "@/app/homepage.module.css"
+import { SignOutButton } from "@clerk/nextjs";
 
 export default async function Home() {
-
   const queryLocations = await db.query(`SELECT * FROM w12_locations`);
-  console.log(await queryLocations.rows);
+  // console.log(await queryLocations.rows);
 
   return (
     <div>
