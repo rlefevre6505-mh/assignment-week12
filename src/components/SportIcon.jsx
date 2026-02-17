@@ -6,16 +6,18 @@
 
 import sportIconStyles from "@/styles/sportIcon.module.css"
 
-export default function SportCard(){
-    return(
-        <>
-        
-            {/* use same cards as used in form? */}
-            <div className={sportIconStyles.sportCard}>
-                <img src="#" alt="sportname-icon" className={sportIconStyles.sportIcon}/>
-                <p className={sportIconStyles.sportName}>Sport name</p>
-            </div>
-        
-        </>
-    )
+export default function SportCard() {
+  return (
+    <>
+      {/* use same cards as used in form? */}
+      <div className={sportIconStyles.sportCard}>
+        <img
+          src="#"
+          alt="sportname-icon"
+          className={sportIconStyles.sportIcon}
+        />
+        <p className={sportIconStyles.sportName}>Sport name</p>
+      </div>
+    </>
+  );
 }

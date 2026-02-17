@@ -1,5 +1,4 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
-import { revalidatePath } from "next/cache";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { db } from "../../../../utils/dbConnection";
 
@@ -8,13 +7,13 @@ export default async function ProfileSetupFormPage() {
 
   const querySports = await db.query(`SELECT * FROM w12_sport_list AS sports`);
   const sports = querySports.rows;
-  console.log(sports);
+  // console.log(sports);
 
   const queryLevels = await db.query(
     `SELECT * FROM w12_sport_levels AS levels`,
   );
   const levels = queryLevels.rows;
-  console.log(levels);
+  // console.log(levels);
 
   const queryUser = await db.query(
     `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
