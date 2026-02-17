@@ -14,7 +14,7 @@ export default async function profileSetupFormPageCont() {
   //   [signInName],
   // );
   const queryLocations = await db.query(`SELECT * FROM w12_locations`);
-  console.log(await queryLocations.rows);
+  // console.log(await queryLocations.rows);
 
   // // insert formValues into appropriate tables, using userID
   // function handleSubmit() {}
@@ -40,4 +40,3 @@ export default async function profileSetupFormPageCont() {
 }
 
 // needed for w12_user_locations: user_id, location
-// needed for w12_user_sports: user_id, sport_id, sport_level_id
