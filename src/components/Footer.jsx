@@ -1,4 +1,7 @@
 import footerStyles from "../styles/footer.module.css"
+import {FaFacebook, FaInstagram, FaTwitter} from "react-icons/fa"
+
+// TODO: add logos
 
 export default function Footer(){
     return(
@@ -6,9 +9,9 @@ export default function Footer(){
         <p className={footerStyles.p}>Kickabout (c)</p>
 
         <div className={footerStyles.socialMediaLogoContainer}>
-            <img src="#" alt="facebook-logo" className={footerStyles.socialMediaLogo}/>
-            <img src="#" alt="twitter-logo" className={footerStyles.socialMediaLogo}/>
-            <img src="#" alt="instagram-logo" className={footerStyles.socialMediaLogo}/>
+            <FaFacebook className={footerStyles.socialMediaLogo}/>
+            <FaInstagram className={footerStyles.socialMediaLogo}/>
+            <FaTwitter className={footerStyles.socialMediaLogo}/>
         </div>
         </footer>
     )

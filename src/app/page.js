@@ -21,7 +21,8 @@ export default async function Home() {
       </section>
 
       <section className={homepageStyles.aboutSection}>
-        <img src="#" alt="animation of people playing football together" className={homepageStyles.footballImage}/>
+        {/* TODO: Get this image working! */}
+        <img src="../public/images/football.png" alt="animation of people playing football together" className={homepageStyles.footballImage}/>
         <p className={homepageStyles.aboutText}>
           Ever wanted to try a new hobby, but don’t know where to start?
 
@@ -33,6 +34,7 @@ export default async function Home() {
         </p>
       </section>
 
+{/* TODO: Add text into these cards */}
       <section className={homepageStyles.howItWorksSection}>
         <h2 className={homepageStyles.howItWorksTitle}>How it works</h2>
 

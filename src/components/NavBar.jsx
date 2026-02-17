@@ -9,22 +9,22 @@ export default function NavBar(){
         <nav className={navBarStyles.nav}>
         
         {/* render both text and icons, CSS will decide what is visible */}
-            <Link href="/chats" className={navBarStyles.navLink}>
+            <Link href="#" className={navBarStyles.navLink}>
                 <FaComments className={navBarStyles.icon}/>
                 <span className={navBarStyles.label}>Chats</span>
             </Link>
 
-            <Link href="/feed" className={navBarStyles.navLink}>
+            <Link href="#" className={navBarStyles.navLink}>
                 <FaUserFriends className={navBarStyles.icon}/>
                 <span className={navBarStyles.label}>Matches</span>
             </Link>
 
-            <Link href="/map" className={navBarStyles.navLink}>
+            <Link href="#" className={navBarStyles.navLink}>
                 <FaMap className={navBarStyles.icon}/>
                 <span className={navBarStyles.label}>Map</span>
             </Link>
 
-            <Link href="/profile/[username]/profile-page" className={navBarStyles.navLink}>
+            <Link href="#" className={navBarStyles.navLink}>
                 <FaUser className={navBarStyles.icon}/>
                 <span className={navBarStyles.label}>My Profile</span>
             </Link>

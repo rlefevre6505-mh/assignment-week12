@@ -4,7 +4,7 @@
 
 // ! do I create all cards for all sports here? do I use an array to feed the information into the cards?
 
-import sportIconStyles from "@/styles/sportCard.module.css"
+import sportIconStyles from "@/styles/sportIcon.module.css"
 
 export default function SportCard(){
     return(

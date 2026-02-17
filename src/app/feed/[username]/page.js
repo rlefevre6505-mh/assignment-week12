@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 import MatchesList from "@/components/MatchesList"
 import feedStyles from "@/app/feed/[username]/feed.module.css"
 import {FaSort, FaFilter, FaGripLinesVertical} from "react-icons/fa"
