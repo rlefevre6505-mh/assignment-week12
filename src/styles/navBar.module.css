@@ -26,6 +26,8 @@
     display: none
 }
 
+.icon{}
+
 /* Desktop screen size */
 @media (min-width: 768px){
     .nav{
@@ -45,6 +47,8 @@
     .label{
         display: inline
     }
+
+    .icon{}
 }
 
 /* prevent content being hidden behind mobile nav */

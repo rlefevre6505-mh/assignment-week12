@@ -1,16 +1,20 @@
 // this will be the section in the profile page which will display all of the sports that user has chosen at sign up - displaying the sport icon and the ability level
 
+// TODO: ADD LOGIC so that the sport cards that show on the page are the ones that user has selected
+
 import profileSportsStyle from "@/styles/profileSports.module.css"
-import SportCard from "./SportCard"
+import SportIcon from "./SportIcon"
 
 export default function ProfileSports(){
     return(
         <>
         <h2 className={profileSportsStyle.h2}>Sports</h2>
+        
         {/* logic here to fetch sports data and levels from db, use .map to create a card for each one*/}
-
-        {/* OR use SportCard component here?? and reuse it in the form? */}
-        <SportCard/>
+        <div className={profileSportsStyle.sportPlusLevel}>
+            <SportIcon className={profileSportsStyle.sportIcon}/>
+            <p className={profileSportsStyle.abilityLevel}>Ability Level</p>
+        </div>
         </>
     )
 }

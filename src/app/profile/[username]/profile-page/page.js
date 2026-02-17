@@ -1,5 +1,6 @@
 import Header from "src/components/Header";
 import NavBar from "@/components/NavBar";
+import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css"
 
 export default function profilePage() {
   return(
@@ -8,13 +9,15 @@ export default function profilePage() {
       {/* this will be within the header on desktop and at the bottom with icons for app*/}
       <NavBar/>
 
-      <ProfileBioCard/>
+      <body className={profilePageStyles.mainSection}>
 
-      <ProfileSports/>
+        <ProfileBioCard className={profilePageStyles.bioSection}/>
 
-      <ProfileConnections/>
-      
-      {/* only show this for desktop screen size */}
+        <ProfileSports className={profilePageStyles.sportsSection}/>
+
+        <ProfileConnections className={profilePageStyles.connectionsSection}/>
+
+      </body>
       <Footer/>
     </>
   )
