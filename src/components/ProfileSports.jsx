@@ -5,6 +5,17 @@
 import profileSportsStyle from "@/styles/profileSports.module.css"
 import SportIcon from "./SportIcon"
 
+// create array of sports names + icons
+const sportsIconData = [
+  {name: "Football", icon:"/icons/football.png"},
+  {name: "Tennis", icon:"/icons/tennis.png"},
+  {name: "Badminton", icon:"/icons/badminton.png"},
+  {name: "Basketball", icon:"/icons/basketball.png"},
+  {name: "Frisbee", icon:"/icons/frisbee.png"},
+  {name: "Running", icon:"/icons/running.png"},
+  {name: "Cycling", icon: "/icons/cycling.png"}
+];
+
 export default function ProfileSports(){
     return(
         <>
@@ -12,8 +23,20 @@ export default function ProfileSports(){
         
         {/* logic here to fetch sports data and levels from db, use .map to create a card for each one*/}
         <div className={profileSportsStyle.sportPlusLevel}>
-            <SportIcon className={profileSportsStyle.sportIcon}/>
-            <p className={profileSportsStyle.abilityLevel}>Ability Level</p>
+
+            {/* TODO: BELOW .map will render all from the array - need to edit so it only renders those selected by the user */}
+            {sportsIconData.map((sport)=>(
+                <>
+                <SportIcon
+                    key={sport.name}
+                    name={sport.name}
+                    icon={sport.icon}
+                    />
+                <p>ability level goes here</p>
+                </>
+            ))}
+            {/* <SportIcon className={profileSportsStyle.sportIcon}/> */}
+            {/* <p className={profileSportsStyle.abilityLevel}>Ability Level</p> */}
         </div>
         </>
     )

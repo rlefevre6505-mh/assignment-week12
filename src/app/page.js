@@ -29,7 +29,7 @@ export default async function Home() {
 
       <section className={homepageStyles.aboutSection}>
         {/* TODO: Get this image working! */}
-        <img src="../public/images/football.png" alt="animation of people playing football together" className={homepageStyles.footballImage}/>
+        <img src="/images/football.png" alt="animation of people playing football together" className={homepageStyles.footballImage}/>
         <p className={homepageStyles.aboutText}>
           Ever wanted to try a new hobby, but don’t know where to start? We know
           it can be difficult to try something new - especially when that means

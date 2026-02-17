@@ -15,8 +15,18 @@
     object-fit: cover;
 }
 
-.profileBioCardContent{}
+.profileBioCardContent{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
 
-.username{}
+.username{
+    font-size: 1.4rem;
+    font-family: var(--font-heading);
+}
 
-.p{}
+.p{
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
