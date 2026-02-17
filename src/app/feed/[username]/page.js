@@ -11,25 +11,31 @@ export default function feedPage() {
 
     <NavBar/>
 
-    <h1>Your matches</h1>
+    <h1 className={feedStyles.pageTitle}>Your matches</h1>
 
-    <hr></hr>
+    <hr className={feedStyles.lineBreak}></hr>
 
-    <button>
-      <FaSort className={feedStyles.icon}/>
-      <span className={feedStyles.label}>Sort</span>
-    </button>
+    <section className={feedStyles.controls}>
 
-    <FaGripLinesVertical className={feedStyles.lines}/>
+      <button className={feedStyles.sortButton}>
+        <FaSort className={feedStyles.icon}/>
+        <span className={feedStyles.label}>Sort</span>
+      </button>
 
-    <button>
-      <FaFilter className={feedStyles.icon}/>
-      <span className={feedStyles.label}>Filter</span>
-    </button>
+      <FaGripLinesVertical className={feedStyles.lines}/>
 
-    <hr></hr>
+      <button className={feedStyles.filterButton}>
+        <FaFilter className={feedStyles.icon}/>
+        <span className={feedStyles.label}>Filter</span>
+      </button>
 
-    <MatchesList/>
+    </section>
+
+    <hr className={feedStyles.lineBreak}></hr>
+
+    <section className={feedStyles.matchesSection}>
+      <MatchesList/>
+    </section>
 
     <Footer/>
     

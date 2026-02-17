@@ -15,8 +15,8 @@ export default function MatchesList(){
 
                 <div className={matchesListStyles.matchUserContent}>
                 {/* TODO: Add logic so username/location is dynamic */}
-                    <h2 className={profileBioCardStyles.username}>Username</h2>
-                    <p className={profileBioCardStyles.p}>Location</p>
+                    <h2 className={matchesListStyles.username}>Username</h2>
+                    <p className={matchesListStyles.location}>Location</p>
                 </div>
 
                 <div className={matchesListStyles.matchUserSports}>

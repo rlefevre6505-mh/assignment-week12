@@ -14,8 +14,10 @@ export default async function Home() {
         <h1 className={homepageStyles.appTitle}>Kickabout</h1>
         <h2 className={homepageStyles.h2}>It's hard being a beginner.</h2>
         <h3 className={homepageStyles.h3}>Take the pressure off and make friends with Kickabout</h3>
-        <Link href="/sign-up" className={homepageStyles.signUpLink}>sign up</Link>
-        <Link href="/sign-in" className={homepageStyles.signInLink}>sign in</Link>
+        <div className={homepageStyles.clerkLinks}>
+          <Link href="/sign-up" className={homepageStyles.signUpLink}>sign up</Link>
+          <Link href="/sign-in" className={homepageStyles.signInLink}>sign in</Link>
+        </div>
       </section>
 
       <section className={homepageStyles.aboutSection}>

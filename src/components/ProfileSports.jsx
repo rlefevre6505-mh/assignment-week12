@@ -12,7 +12,7 @@ export default function ProfileSports(){
         
         {/* logic here to fetch sports data and levels from db, use .map to create a card for each one*/}
         <div className={profileSportsStyle.sportPlusLevel}>
-            <SportIcon/>
+            <SportIcon className={profileSportsStyle.sportIcon}/>
             <p className={profileSportsStyle.abilityLevel}>Ability Level</p>
         </div>
         </>

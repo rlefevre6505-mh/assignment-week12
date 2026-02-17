@@ -9,13 +9,13 @@ import sportIconStyles from "@/styles/sportCard.module.css"
 export default function SportCard(){
     return(
         <>
-        <div className={sportIconStyles.profileSportCard}>
+        
             {/* use same cards as used in form? */}
             <div className={sportIconStyles.sportCard}>
                 <img src="#" alt="sportname-icon" className={sportIconStyles.sportIcon}/>
                 <p className={sportIconStyles.sportName}>Sport name</p>
             </div>
-        </div>
+        
         </>
     )
 }
