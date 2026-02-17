@@ -1,6 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import LocationComponent from "@/components/LocationComponent";
-import { db } from "@/utils/dbConnection";
+import { db } from "../../../utils/dbConnection";
 
 export default async function profileSetupFormPageCont() {
   // // pull clerk id and current date here
@@ -32,6 +32,7 @@ export default async function profileSetupFormPageCont() {
     // </form>
     <>
       <LocationComponent
+        userid={4} //! PLACEHOLDER
         locations={queryLocations.rows}
         key={queryLocations.rows.id}
       />
