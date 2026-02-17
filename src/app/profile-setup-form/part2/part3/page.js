@@ -18,7 +18,7 @@ export default async function ProfileSetupFormPage() {
 
   const queryUser = await db.query(
     `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
-    ["user_39kZhVFJWRVgA26RzTqBeKZ88J5"],
+    [userId],
   );
   const user = queryUser.rows[0].id;
 
@@ -67,7 +67,7 @@ export default async function ProfileSetupFormPage() {
         console.error(error);
       }
     }
-    redirect(`/feed`);
+    redirect(`/feed/:username`);
   }
 
   return (
