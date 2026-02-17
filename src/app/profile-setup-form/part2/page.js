@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import LocationComponent from "@/components/LocationComponent";
 import { db } from "../../../utils/dbConnection";
 
@@ -7,6 +7,7 @@ export default async function profileSetupFormPageCont() {
   // const signInName = await currentUser();
   // //get userID from newly created user in DB
   // pull clerk id and current date here
+  const { userId } = await auth();
   const signInName = await currentUser();
   //get userID from newly created user in DB
   // const queryUser = await db.query(
@@ -14,6 +15,12 @@ export default async function profileSetupFormPageCont() {
   //   [signInName],
   // );
   const queryLocations = await db.query(`SELECT * FROM w12_locations`);
+
+  const queryUser = await db.query(
+    `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
+    [userId],
+  );
+  const user = queryUser.rows[0].id;
   // console.log(await queryLocations.rows);
 
   // // insert formValues into appropriate tables, using userID
@@ -32,7 +39,7 @@ export default async function profileSetupFormPageCont() {
     // </form>
     <>
       <LocationComponent
-        userid={4} //! PLACEHOLDER
+        userid={user} //! PLACEHOLDER
         locations={queryLocations.rows}
         key={queryLocations.rows.id}
       />
