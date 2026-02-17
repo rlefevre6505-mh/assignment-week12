@@ -64,7 +64,7 @@ export default async function ProfileSetupFormPage() {
       console.error(error);
     }
     revalidatePath(`profile-setup-form`);
-    redirect(`profile-setup-form/profile-setup-form-cont`);
+    redirect(`profile-setup-form/part2`);
   }
   return (
     <main className={setupFormStyles.main_section}>

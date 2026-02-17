@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Link from "next/link";
 import { SaveLocations } from "../app/actions/SaveLocations";
+import { redirect } from "next/navigation";
 
 export default function LocationComponent({ userid, locations }) {
   //search functionality state:
@@ -41,6 +42,7 @@ export default function LocationComponent({ userid, locations }) {
       ];
       SaveLocations(locationData);
     }
+    redirect(`profile-setup-form/part2/part3`);
   };
 
   //clear search
