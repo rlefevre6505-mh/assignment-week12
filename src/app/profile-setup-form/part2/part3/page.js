@@ -1,5 +1,4 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
-import { revalidatePath } from "next/cache";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { db } from "../../../../utils/dbConnection";
 import setupFormStyles from "@/app/profile-setup-form/profile-setup-form.module.css";
@@ -68,7 +67,7 @@ export default async function ProfileSetupFormPage() {
         console.error(error);
       }
     }
-    redirect(`/feed`);
+    redirect(`/feed/:username`);
   }
 
   return (

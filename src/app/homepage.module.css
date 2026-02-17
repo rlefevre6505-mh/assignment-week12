@@ -1,36 +1,71 @@
 /* TOP SECTION */
 
+/* TODO: rearrange text locations to match wireframes */
+
 .introSection{
     background-color: var(--colour-primary);
+    color: var(--colour-white);
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: center;
 }
 
 .appTitle{
-    color:beige;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
 }
 
 .h2{
-
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm)
 }
 
 .h3{
-
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.9;
 }
 
-.clerkLinks{
+/* AUTH BUTTONS */
 
+.clerkLinks{
+    display: flex;
+    gap: var(--spacing-sm)
+}
+
+.signUpLink,
+.signInLink{
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 500;
+    transition: 0.2s ease;
 }
 
 .signUpLink{
-
+    background-color: var(--colour-accent);
+    color: var(--colour-primary)
 }
 
 .signInLink{
-
+    border: 1px solid var(--colour-accent);
+    color: var(--colour-accent)
 }
 
-.aboutSection{
-    background-color: beige;
+/* ABOUT SECTION */
 
+.aboutSection{
+    background-color: var(--colour-accent);
+    padding: var(--spacing-xl) var(--spacing-md);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
 }
 
 .footballImage{
@@ -38,24 +73,39 @@
 }
 
 .aboutText{
-
+    color: var(--colour-primary);
+    line-height: 1.7;
 }
 
-.howItWorksSection{
-    background-color: darkcyan;
+/* HOW IT WORKS SECTION */
 
+.howItWorksSection{
+    background-color: var(--colour-primary);
+    padding: var(--spacing-xl) var(--spacing-md);
+    color: var(--colour-white);
 }
 
 .howItWorksTitle{
-
+    margin-bottom: var(--spacing-md);
 }
 
 .howItWorksCards{
-
+    display:grid;
+    grid-template-columns: repeat (4 1fr);
+    gap: var(--spacing-sm)
 }
 
 .card{
+    background-color: var(--colour-accent);
+    color: var(--colour-primary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    transition: 0.2s ease;
+}
 
+.card:hover{
+    transform: translateY(-4px);
 }
 
 .cardTitle{
@@ -67,5 +117,42 @@
 }
 
 .homepageFooter{
-    background-color: darkcyan;
+    background-color: var(--colour-primary);
+    padding: var(--spacing-md);
+    color: var(--colour-white)
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 1024px){
+    .aboutSection{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .howItWorksCards{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px){
+    .clerkLinks{
+        flex-direction: column;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    /* TODO: redesign scroll bar to fit in with page/add swipe functionality for phones? */
+    .howItWorksCards{
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    .card{
+        min-width: 80%;
+        flex: 0 0 80%;
+        scroll-snap-align: center;
+    }
+}
+

@@ -66,3 +66,9 @@ a{
 } */
 
 
+/* Dark mode */
+[data-theme="dark"]{
+  --color-primary: #1a1a1a;
+  --color-accent: #2a2a2a;
+  --color-text-dark: #ffffff;
+}

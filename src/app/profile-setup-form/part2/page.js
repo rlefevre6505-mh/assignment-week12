@@ -7,6 +7,7 @@ export default async function profileSetupFormPageCont() {
   // const signInName = await currentUser();
   // //get userID from newly created user in DB
   // pull clerk id and current date here
+  //TODO: userId not currently in use, see red text in return > LocationComponent. Will need to get w12_app_users
   const { userId } = await auth();
   const signInName = await currentUser();
   //get userID from newly created user in DB
@@ -22,7 +23,11 @@ export default async function profileSetupFormPageCont() {
   );
   const user = queryUser.rows[0].id;
   // console.log(await queryLocations.rows);
-
+  const queryUser = await db.query(
+    `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
+    [userId],
+  );
+  const user = queryUser.rows[0].id;
   // // insert formValues into appropriate tables, using userID
   // function handleSubmit() {}
 
@@ -39,7 +44,7 @@ export default async function profileSetupFormPageCont() {
     // </form>
     <>
       <LocationComponent
-        userid={user} //! PLACEHOLDER
+        userid={user}
         locations={queryLocations.rows}
         key={queryLocations.rows.id}
       />

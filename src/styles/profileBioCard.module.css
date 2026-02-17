@@ -1,6 +1,19 @@
-.profileBioCardContainer{}
+.profileBioCardContainer{
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background: var(--colour-accent);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: var(--spacing-md);
+}
 
-.userPhoto{}
+.userPhoto{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #cfcfcf;
+    object-fit: cover;
+}
 
 .profileBioCardContent{}
 

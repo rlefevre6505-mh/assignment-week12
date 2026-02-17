@@ -1,6 +1,16 @@
 .mainSection{
-
+    background-color: var(--color-accent);
+    min-height: 100vh;
+    padding: var(--spacing-lg) var(--spacing-md)
 }
+
+.profileLayout{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    gap: var(--spacing-lg)
+}
+
 
 .bioSection{
 
@@ -12,4 +22,11 @@
 
 .connectionsSection{
     
+}
+
+/* RESPONSIVE */
+@media (min-width: 1024px){
+    .profileLayout{
+        gap: var(--spacing-xl)
+    }
 }

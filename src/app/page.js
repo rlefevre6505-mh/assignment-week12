@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { db } from "../utils/dbConnection";
 import Footer from "../components/Footer";
-import homepageStyles from "@/app/homepage.module.css"
+import homepageStyles from "@/app/homepage.module.css";
 import { SignOutButton } from "@clerk/nextjs";
 
 export default async function Home() {
@@ -13,26 +13,35 @@ export default async function Home() {
       <section className={homepageStyles.introSection}>
         <h1 className={homepageStyles.appTitle}>Kickabout</h1>
         <h2 className={homepageStyles.h2}>It's hard being a beginner.</h2>
-        <h3 className={homepageStyles.h3}>Take the pressure off and make friends with Kickabout</h3>
+        <h3 className={homepageStyles.h3}>
+          Take the pressure off and make friends with Kickabout
+        </h3>
         <div className={homepageStyles.clerkLinks}>
-          <Link href="/sign-up" className={homepageStyles.signUpLink}>sign up</Link>
-          <Link href="/sign-in" className={homepageStyles.signInLink}>sign in</Link>
+          <Link href="/sign-up" className={homepageStyles.signUpLink}>
+            sign up
+          </Link>
+          <Link href="/sign-in" className={homepageStyles.signInLink}>
+            sign in
+          </Link>
+          <SignOutButton />
         </div>
       </section>
 
       <section className={homepageStyles.aboutSection}>
-        <img src="#" alt="animation of people playing football together" className={homepageStyles.footballImage}/>
+        {/* TODO: Get this image working! */}
+        <img src="../public/images/football.png" alt="animation of people playing football together" className={homepageStyles.footballImage}/>
         <p className={homepageStyles.aboutText}>
-          Ever wanted to try a new hobby, but don’t know where to start?
-
-            We know it can be difficult to try something new - especially when that means joining an established club or team, often with the requirement to commit to a set schedule
-
-            That’s why we created Kickabout - so you can find like-minded people in your area who want to try the same activities as you at a beginner level.
-
-            No pressure. No competition. Just fun!
+          Ever wanted to try a new hobby, but don’t know where to start? We know
+          it can be difficult to try something new - especially when that means
+          joining an established club or team, often with the requirement to
+          commit to a set schedule That’s why we created Kickabout - so you can
+          find like-minded people in your area who want to try the same
+          activities as you at a beginner level. No pressure. No competition.
+          Just fun!
         </p>
       </section>
 
+{/* TODO: Add text into these cards */}
       <section className={homepageStyles.howItWorksSection}>
         <h2 className={homepageStyles.howItWorksTitle}>How it works</h2>
 
@@ -62,7 +71,6 @@ export default async function Home() {
       <section className={homepageStyles.homepageFooter}>
         <Footer />
       </section>
-      
     </div>
   );
 }
