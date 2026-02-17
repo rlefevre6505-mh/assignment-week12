@@ -4,18 +4,20 @@
 
 // ! do I create all cards for all sports here? do I use an array to feed the information into the cards?
 
-import sportIconStyles from "@/styles/sportCard.module.css"
+import sportIconStyles from "@/styles/sportIcon.module.css";
 
-export default function SportCard(){
-    return(
-        <>
-        
-            {/* use same cards as used in form? */}
-            <div className={sportIconStyles.sportCard}>
-                <img src="#" alt="sportname-icon" className={sportIconStyles.sportIcon}/>
-                <p className={sportIconStyles.sportName}>Sport name</p>
-            </div>
-        
-        </>
-    )
+export default function SportCard() {
+  return (
+    <>
+      {/* use same cards as used in form? */}
+      <div className={sportIconStyles.sportCard}>
+        <img
+          src="#"
+          alt="sportname-icon"
+          className={sportIconStyles.sportIcon}
+        />
+        <p className={sportIconStyles.sportName}>Sport name</p>
+      </div>
+    </>
+  );
 }
