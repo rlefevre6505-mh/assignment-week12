@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import LocationComponent from "@/components/LocationComponent";
 import { db } from "../../../utils/dbConnection";
 
@@ -7,6 +7,7 @@ export default async function profileSetupFormPageCont() {
   // const signInName = await currentUser();
   // //get userID from newly created user in DB
   // pull clerk id and current date here
+  //TODO: userId not currently in use, see red text in return > LocationComponent. Will need to get w12_app_users
   const { userId } = await auth();
   const signInName = await currentUser();
   //get userID from newly created user in DB
@@ -15,6 +16,12 @@ export default async function profileSetupFormPageCont() {
   //   [signInName],
   // );
   const queryLocations = await db.query(`SELECT * FROM w12_locations`);
+
+  const queryUser = await db.query(
+    `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
+    [userId],
+  );
+  const user = queryUser.rows[0].id;
   // console.log(await queryLocations.rows);
   const queryUser = await db.query(
     `SELECT id FROM w12_app_users WHERE clerk_id = $1`,

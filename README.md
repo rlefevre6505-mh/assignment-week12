@@ -1,6 +1,7 @@
 Setup:
 npm i @clerk/nextjs
 npm i @clerk/elements
+npm i react-icons
 
 # Deleting table entries wit hno primary key:
 
