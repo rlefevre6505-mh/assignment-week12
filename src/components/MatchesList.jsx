@@ -25,12 +25,12 @@ export default function MatchesList({matches}){
                     href={`/profile/${match.screen_name}/profile-page`}
                     className={matchesListStyles.matchCard}>
 
-                    <div className={matchesListStyles.matchUserBio}>
+                    {/* <div className={matchesListStyles.matchUserBio}> */}
                         <img
                             src={match.profile_photo || "/icons/default-avatar.png"}
                             alt={`${match.screen_name}'s profile`}
                             className={matchesListStyles.matchUserPhoto}/>
-                    </div>
+                    {/* </div> */}
 
                     <div className={matchesListStyles.matchUserContent}>
                         <h2 className={matchesListStyles.username}>
@@ -39,7 +39,7 @@ export default function MatchesList({matches}){
                         <p className={matchesListStyles.location}>
                             {match.town_name}
                         </p>
-                    </div>
+                    
 
                     <div className={matchesListStyles.matchUserSports}>
                         {match.sports.map((sport)=>{
@@ -51,13 +51,14 @@ export default function MatchesList({matches}){
 
                             return(
                                 <SportCard
-                                key={sport.sport_id}
-                                name={sportData.name}
-                                icon={sportData.icon}
-                                level={levelMap[sport.sport_level_id]}/>)}
+                                    key={sport.sport_id}
+                                    name={sportData.name}
+                                    icon={sportData.icon}
+                                    level={levelMap[sport.sport_level_id]}
+                                    variant="mini"/>)}
                         )}
                     </div>
-
+                    </div>
                     </Link>
                     ))}
             
@@ -65,4 +66,5 @@ export default function MatchesList({matches}){
         </>
     )
 }
+
 

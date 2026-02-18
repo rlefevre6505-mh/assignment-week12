@@ -15,6 +15,23 @@
     justify-content: center;
 }
 
+.sportCardMini{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--colour-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-soft);
+    padding: 0.4rem;
+}
+
+.sportIconMini{
+    width: 22px;
+    height: 22px;
+}
+
 .sportCard:hover{
     transform: translateY(-4px);
 }
