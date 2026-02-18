@@ -3,8 +3,12 @@
 import matchesListStyles from "@/styles/matchesList.module.css"
 import SportCard from "./SportIcon"
 import Link from "next/link"
+import { levelMap } from "@/data/levels"
+import { sportsIconData } from "@/data/sports"
+
 
 export default function MatchesList({matches}){
+
 
     // TODO: add .map logic to show all cards for users who 'match' within the matches Container
 
@@ -37,10 +41,23 @@ export default function MatchesList({matches}){
                         </p>
                     </div>
 
-                    {/* <div className={matchesListStyles.matchUserSports}>
-                    {/* TODO: insert here sport cards corresponding to all sports that user has selected */}
-                        {/* <SportIcon/> */}
-                    {/* </div>  */}
+                    <div className={matchesListStyles.matchUserSports}>
+                        {match.sports.map((sport)=>{
+
+                            const sportData=sportsIconData.find(
+                            s=> s.id === sport.sport_id)
+
+                            if (!sportData) return null;
+
+                            return(
+                                <SportCard
+                                key={sport.sport_id}
+                                name={sportData.name}
+                                icon={sportData.icon}
+                                level={levelMap[sport.sport_level_id]}/>)}
+                        )}
+                    </div>
+
                     </Link>
                     ))}
             
