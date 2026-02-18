@@ -18,7 +18,7 @@ export default function SportIcon({name, icon, level}) {
           alt={`${name} icon`}
           className={sportIconStyles.sportIcon}
         />
-        <p className={sportIconStyles.sportName}>{name}</p>
+        {/* <p className={sportIconStyles.sportName}>{name}</p> */}
         <p className={sportIconStyles.sportLevel}>{level}</p>
       </div>
     </>

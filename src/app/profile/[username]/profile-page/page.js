@@ -34,7 +34,9 @@ export default function profilePage({params}) {
       </main>
 
       {/* Bottom Nav for mobile */}
-      <NavBar/>
+      <div className={profilePageStyles.mobileNav}>
+        <NavBar/>
+      </div>
       <Footer/>
     </>
   )
