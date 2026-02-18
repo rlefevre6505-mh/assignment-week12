@@ -3,15 +3,21 @@
 import profileBioCardStyles from "@/styles/profileBioCard.module.css";
 
 //TODO: use next image instead of <img>
-export default function ProfileBioCard({username, locations, dob, gender, bio}) {
+export default function ProfileBioCard({
+  username,
+  locations,
+  dob,
+  gender,
+  bio,
+}) {
   return (
     <>
       <section className={profileBioCardStyles.profileBioCardContainer}>
-
-            <img
-                src={"/icons/default-avatar.png"}
-                alt={`profile photo`}
-                className={profileBioCardStyles.userPhoto}/>
+        <img
+          src={"/icons/default-avatar.png"}
+          alt={`profile photo`}
+          className={profileBioCardStyles.userPhoto}
+        />
 
         <div className={profileBioCardStyles.profileBioCardContent}>
           <h2 className={profileBioCardStyles.username}>
@@ -23,6 +29,6 @@ export default function ProfileBioCard({username, locations, dob, gender, bio}) 
           <p className={profileBioCardStyles.p}>Bio: {bio}</p>
         </div>
       </section>
-      </>
-      )}
-
+    </>
+  );
+}
