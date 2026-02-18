@@ -1,6 +1,7 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import LocationComponent from "@/components/LocationComponent";
 import { db } from "../../../utils/dbConnection";
+import { Protect } from "@clerk/nextjs";
 
 export default async function profileSetupFormPageCont() {
   // // pull clerk id and current date here
@@ -37,11 +38,15 @@ export default async function profileSetupFormPageCont() {
     //   <button type="submit">Submit</button>
     // </form>
     <>
-      <LocationComponent
-        userid={user}
-        locations={queryLocations.rows}
-        key={queryLocations.rows.id}
-      />
+      <Protect
+        fallback={<p>Users that are not signed in cannot view this page.</p>}
+      >
+        <LocationComponent
+          userid={user}
+          locations={queryLocations.rows}
+          key={queryLocations.rows.id}
+        />{" "}
+      </Protect>
     </>
   );
 }

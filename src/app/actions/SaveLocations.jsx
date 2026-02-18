@@ -1,5 +1,5 @@
 "use server";
-import { db } from "/utils/dbConnection";
+import { db } from "@/utils/dbConnection";
 
 //TODO: OG:
 export async function SaveLocations(locationData) {
