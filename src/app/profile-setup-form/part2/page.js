@@ -18,10 +18,12 @@ export default async function profileSetupFormPageCont() {
   const queryLocations = await db.query(`SELECT * FROM w12_locations`);
   // console.log(await queryLocations.rows);
   const queryUser = await db.query(
-    `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
+    `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
   );
+  console.log(userId);
   const user = queryUser.rows[0].id;
+  console.log(user);
   // // insert formValues into appropriate tables, using userID
   // function handleSubmit() {}
 

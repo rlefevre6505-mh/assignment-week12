@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
 import { useEffect } from "react";
-import Link from "next/link";
 import { SaveLocations } from "../app/actions/SaveLocations";
 import { redirect } from "next/navigation";
-// import setupformStyles from "@/styles/locationcomponent.module.css";
+import setupformStyles from "@/styles/locationcomponent.module.css";
 
 export default function LocationComponent({ userid, locations }) {
   //search functionality state:
@@ -44,7 +43,7 @@ export default function LocationComponent({ userid, locations }) {
       SaveLocations(locationData);
     }
     // console.log("Redirect?");
-    // redirect(`/profile-setup-form/part2/part3`);
+    redirect(`/profile-setup-form/part2/part3`);
   };
 
   //clear search
@@ -53,17 +52,22 @@ export default function LocationComponent({ userid, locations }) {
   //     setfilteredLocations([]);
   //   };
   return (
-    <main>
-      <h1>Where are you based?</h1>
-      <h2>
+    <main className={setupformStyles.main_section}>
+      <h1 className={setupformStyles.heading}>Where are you based?</h1>
+      <h2 className={setupformStyles.subheading}>
         Please type in the name of your home town/city, a list of possible
         choices will appear. When you click &quot;Submit&quot;, the top entry in
         that list will be selected.{" "}
       </h2>
-      <div>
-        <label>Search</label>
+      <div className={setupformStyles.form}>
+        <label className={setupformStyles.form}>Search</label>
         <p>{filteredLocations.length}</p>
-        <input tabIndex={0} type="text" onChange={(e) => handleChange(e)} />
+        <input
+          tabIndex={0}
+          type="text"
+          onChange={(e) => handleChange(e)}
+          className={setupformStyles.input}
+        />
         {/* <p>{showWarning ? <p>Please Select a Location</p> : <p></p>}</p> */}
         <div>
           {filteredLocations.length != locations.length ? (
@@ -73,44 +77,14 @@ export default function LocationComponent({ userid, locations }) {
           ) : (
             <p></p>
           )}
-          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={handleSubmit} className={setupformStyles.button}>
+            Submit
+          </button>
         </div>
       </div>
     </main>
   );
 }
-
-// {/* <main className={setupformStyles.main_section}>
-//       <h1 className={setupformStyles.heading}>Where are you based?</h1>
-//       <h2 className={setupformStyles.subheading}>
-//         Please type in the name of your home town/city, a list of possible
-//         choices will appear. When you click &quot;Submit&quot;, the top entry in
-//         that list will be selected.{" "}
-//       </h2>
-//       <form className={setupformStyles.form}>
-//         <label className={setupformStyles.form}>Search</label>
-//         <p>{filteredLocations.length}</p>
-//         <input
-//           tabIndex={0}
-//           type="text"
-//           onChange={(e) => handleChange(e)}
-//           className={setupformStyles.input}
-//         />
-//         {/* <p>{showWarning ? <p>Please Select a Location</p> : <p></p>}</p> */}
-//         <div>
-//           {filteredLocations.length != locations.length ? (
-//             filteredLocations.map((location) => (
-//               <p key={location.id}>{location.town_name}</p>
-//             ))
-//           ) : (
-//             <p></p>
-//           )}
-//           <button onClick={handleSubmit} className={setupformStyles.button}>
-//             Submit
-//           </button>
-//         </div>
-//       </form>
-//     </main> */}
 
 // {
 //   <input
