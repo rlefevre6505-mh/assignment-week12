@@ -8,8 +8,8 @@ import ProfileConnections from "@/components/ProfileConnections";
 import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css";
 
-export default async function profilePage({params}) {
-  const {username} = params;
+export default async function profilePage({ params }) {
+  const { username } = params;
   const { userId } = await auth();
   // const queryUser = await db.query(
   //   `SELECT id, screen_name, bio FROM w12_app_users WHERE clerk_id = $1`,
@@ -27,21 +27,39 @@ export default async function profilePage({params}) {
   const userDob = queryUser.rows[0].dob;
   const userGender = queryUser.rows[0].gender;
   const userBio = queryUser.rows[0].bio;
+
+  console.log("appUserId");
+  console.log(appUserId);
+  console.log("userName");
+  console.log(userName);
+  console.log("userDob");
+  console.log(typeof userDob);
+  console.log("userGender");
+  console.log(userGender);
+  console.log("userBio");
+  console.log(userBio);
+
   const queryUserLocations = await db.query(
     `SELECT location_id FROM w12_user_locations WHERE user_id = $1`,
     [appUserId],
   );
-  const userLocations = queryUserLocations.rows[0];
-  const queryUserLocation = await db.query(
+  const userLocations = queryUserLocations.rows[0].location_id;
+  console.log("userLocations");
+  console.log(userLocations);
+
+  const locations = await db.query(
     `SELECT town_name, county_unitary, country FROM w12_locations WHERE id = $1`,
-    [userLocations.id],
+    [userLocations],
   );
-  const myLocation = queryUserLocations.rows[0].town_name;
+  const myLocation = locations.rows[0];
+  const myTown = myLocation.town_name;
+  const myCounty = myLocation.county_unitary;
+  const myCountry = myLocation.country;
+  const locationArray = [myTown, myCounty, myCountry];
 
-  console.log("user locations");
-  console.log(myLocation);
+  console.log(locationArray);
 
-  return(
+  return (
     <>
       <header className={profilePageStyles.headerSection}>
         <Header>
@@ -53,16 +71,16 @@ export default async function profilePage({params}) {
       <main className={profilePageStyles.mainSection}>
         <div className={profilePageStyles.profileLayout}>
           <ProfileBioCard
-            username={1}
-            locations={1}
+            username={userName}
+            locations={locationArray}
             dob={1}
-            gender={1}
-            bio={1}
+            gender={userGender}
+            bio={userBio}
           />
 
           {/* <ProfileBioCard/> */}
 
-          <ProfileSports username={username}/>
+          <ProfileSports username={username} />
 
           <ProfileConnections />
         </div>
@@ -70,55 +88,55 @@ export default async function profilePage({params}) {
 
       {/* Bottom Nav for mobile */}
       <div className={profilePageStyles.mobileNav}>
-        <NavBar/>
+        <NavBar />
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
 
-  // let queryLocations = [];
+// let queryLocations = [];
 
-  // async function checkLocation(location, i) {
-  //   queryLocations[i] = await db.query(
-  //     `SELECT town_name, county_unitary, country FROM w12_locations WHERE id = $1`,
-  //     [location],
-  //   );
-  // }
-  //TODO:
-  // let locationsArray = [];
+// async function checkLocation(location, i) {
+//   queryLocations[i] = await db.query(
+//     `SELECT town_name, county_unitary, country FROM w12_locations WHERE id = $1`,
+//     [location],
+//   );
+// }
+//TODO:
+// let locationsArray = [];
 
-  // userLocations.forEach(async function (location, i) {
-  //   console.log("For Each - location:");
-  //   console.log(location.location_id);
-  //   const queryThisLocation = await db.query(
-  //     `SELECT town_name, county_unitary, country FROM w12_locations WHERE id = $1`,
-  //     [location.location_id],
-  //   );
-  //   const thisTown = queryThisLocation.rows[0].town_name;
-  //   const thisCounty = queryThisLocation.rows[0].county_unitary;
-  //   const thisCountry = queryThisLocation.rows[0].country;
-  //   const thisArray = [thisTown, thisCounty, thisCountry, thisArray];
-  //   locationsArray[i] = thisArray;
-  // });
-  // queryUserLocations.forEach(checkLocation(location, i));
-  //TODO: END
+// userLocations.forEach(async function (location, i) {
+//   console.log("For Each - location:");
+//   console.log(location.location_id);
+//   const queryThisLocation = await db.query(
+//     `SELECT town_name, county_unitary, country FROM w12_locations WHERE id = $1`,
+//     [location.location_id],
+//   );
+//   const thisTown = queryThisLocation.rows[0].town_name;
+//   const thisCounty = queryThisLocation.rows[0].county_unitary;
+//   const thisCountry = queryThisLocation.rows[0].country;
+//   const thisArray = [thisTown, thisCounty, thisCountry, thisArray];
+//   locationsArray[i] = thisArray;
+// });
+// queryUserLocations.forEach(checkLocation(location, i));
+//TODO: END
 
-  // console.log("queryLocations:");
-  // console.log(queryLocations);
-  // console.log("locationsArray");
-  // console.log(locationsArray);
-  // // const locations =
-  // console.log("clerkId:");
-  // console.log(userId);
-  // console.log("appUserId:");
-  // console.log(appUserId);
-  // console.log("userName:");
-  // console.log(userName);
-  // console.log("userBio:");
-  // console.log(userBio);
-  // console.log("userLocations:");
-  // console.log(userLocations);
+// console.log("queryLocations:");
+// console.log(queryLocations);
+// console.log("locationsArray");
+// console.log(locationsArray);
+// // const locations =
+// console.log("clerkId:");
+// console.log(userId);
+// console.log("appUserId:");
+// console.log(appUserId);
+// console.log("userName:");
+// console.log(userName);
+// console.log("userBio:");
+// console.log(userBio);
+// console.log("userLocations:");
+// console.log(userLocations);
 //   return (
 // // !Do i need to change username to clerk_id here?
 
