@@ -1,0 +1,93 @@
+.main {
+  background-color: var(--colour-accent);
+  min-height: 100vh;
+  color: var(--colour-primary-light);
+  text-align: center;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.subheading {
+  font-size: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 3rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: left;
+}
+
+.input {
+  background-color: white;
+  height: 32px;
+  border-radius: 25px;
+  width: 100%;
+  margin-bottom: 2rem;
+  margin-top: 0.4rem;
+  padding-left: 10px;
+  box-shadow:
+    0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.button {
+  background-color: var(--colour-primary);
+  color: var(--colour-accent);
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--colour-accent);
+  color: var(--colour-primary-light);
+  border: var(--colour-primary-light) solid 3px;
+}
+
+.input:hover,
+.input:focus {
+  outline: black solid 3px;
+}
+
+@media (min-width: 425px) {
+  .main {
+    padding: 2rem 4rem;
+  }
+  .heading {
+    font-size: 1.7rem;
+  }
+  .subheading {
+    font-size: 1.3rem;
+  }
+  .input {
+    max-width: 384px;
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: 3rem 7rem;
+  }
+  .form {
+    font-size: 1rem;
+  }
+}
