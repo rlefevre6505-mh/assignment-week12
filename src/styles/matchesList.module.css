@@ -1,9 +1,18 @@
 .matchesContainer{
     display: grid;
-    gap: var(--spacing-md)
+    gap: var(--spacing-md);
+    
 }
 
 .matchCard{
+    max-width: 500px;
+    gap: 1rem;
+    align-items: center;
+    background-color: var(--colour-white);
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid #ddd;
+    display: flex;
     text-decoration: none;
     color:inherit
 }
@@ -36,7 +45,8 @@
 }
 
 .matchUserContent{
-
+    display: flex;
+    flex-direction: column;
 }
 
 .username{

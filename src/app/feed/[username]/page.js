@@ -49,8 +49,8 @@ export default async function feedPage() {
     WITH filtered_locations AS (
     SELECT * FROM w12_app_users WHERE id IN
     (SELECT DISTINCT user_id FROM w12_user_locations WHERE location_id IN
-    (SELECT location_id FROM w12_user_locations WHERE user_id = $1))),
-
+    (SELECT location_id FROM w12_user_locations WHERE user_id = $1)))
+    ,
     filtered_sports AS (
     SELECT * FROM w12_app_users WHERE id IN
     (SELECT DISTINCT user_id FROM w12_user_sports WHERE sport_id IN
@@ -58,12 +58,32 @@ export default async function feedPage() {
 
     SELECT *
     FROM filtered_locations
-    WHERE id IN (SELECT id FROM filtered_sports)
-    `,
-    [4],
+    WHERE id <> $1 
+    AND id IN (SELECT id FROM filtered_sports)
+  `,
+    [user],
   );
   const matches = queryMatches.rows;
   console.table(matches);
+
+  // Code to fetch sports separately, becuuse each user could have more than 1 sport
+  const matchIds = matches.map(m=>m.id);
+  const sportsQuery = await db.query(
+    `
+    SELECT user_id, sport_id, sport_level_id
+    FROM w12_user_sports
+    WHERE user_id = ANY($1)`,
+    [matchIds]
+  )
+
+  const matchSports = sportsQuery.rows
+
+  const matchesWithSports = matches.map(match => {
+    return{
+      ...match,
+      sports: matchSports.filter(s => s.user_id === match.id)
+    }
+  })
 
   // const queryMatchSports = await db.query(
   //   `SELECT * FROM w12_app_users WHERE id IN
@@ -76,12 +96,14 @@ export default async function feedPage() {
 
   return (
     <>
+    <header className={feedStyles.headerSection}>
       <Header>
         <NavBar />
       </Header>
+    </header>
       
-
-      <h1 className={feedStyles.pageTitle}>Your matches</h1>
+    <main className={feedStyles.mainSection}>
+      <h2 className={feedStyles.pageTitle}>Your matches</h2>
 
       <hr className={feedStyles.lineBreak}></hr>
 
@@ -102,8 +124,10 @@ export default async function feedPage() {
       <hr className={feedStyles.lineBreak}></hr>
 
       <section className={feedStyles.matchesSection}>
-        <MatchesList />
+        <MatchesList matches={matchesWithSports}/>
       </section>
+
+      </main>
 
       <Footer />
     </>
