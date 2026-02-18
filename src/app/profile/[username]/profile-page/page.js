@@ -8,7 +8,8 @@ import ProfileConnections from "@/components/ProfileConnections";
 import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css";
 
-export default async function profilePage() {
+export default async function profilePage({params}) {
+  const {username} = params;
   const { userId } = await auth();
   // const queryUser = await db.query(
   //   `SELECT id, screen_name, bio FROM w12_app_users WHERE clerk_id = $1`,
@@ -39,6 +40,42 @@ export default async function profilePage() {
 
   console.log("user locations");
   console.log(myLocation);
+
+  return(
+    <>
+      <header className={profilePageStyles.headerSection}>
+        <Header>
+          {/* Top Nav for desktop */}
+          <NavBar />
+        </Header>
+      </header>
+
+      <main className={profilePageStyles.mainSection}>
+        <div className={profilePageStyles.profileLayout}>
+          <ProfileBioCard
+            username={1}
+            locations={1}
+            dob={1}
+            gender={1}
+            bio={1}
+          />
+
+          {/* <ProfileBioCard/> */}
+
+          <ProfileSports username={username}/>
+
+          <ProfileConnections />
+        </div>
+      </main>
+
+      {/* Bottom Nav for mobile */}
+      <div className={profilePageStyles.mobileNav}>
+        <NavBar/>
+      </div>
+      <Footer/>
+    </>
+  );
+}
 
   // let queryLocations = [];
 
@@ -82,45 +119,45 @@ export default async function profilePage() {
   // console.log(userBio);
   // console.log("userLocations:");
   // console.log(userLocations);
-  return (
-// !Do i need to change username to clerk_id here?
+//   return (
+// // !Do i need to change username to clerk_id here?
 
-export default function profilePage({params}) {
+// export default function profilePage({params}) {
 
-  const {username} = params;
+//   const {username} = params;
 
-  return(
-    <>
-      <header className={profilePageStyles.headerSection}>
-        <Header>
-          {/* Top Nav for desktop */}
-          <NavBar />
-        </Header>
-      </header>
+//   return(
+//     <>
+//       <header className={profilePageStyles.headerSection}>
+//         <Header>
+//           {/* Top Nav for desktop */}
+//           <NavBar />
+//         </Header>
+//       </header>
 
-      <main className={profilePageStyles.mainSection}>
-        <div className={profilePageStyles.profileLayout}>
-          <ProfileBioCard
-            username={userName}
-            locations={userLocations}
-            dob={userDob}
-            gender={userGender}
-            bio={userBio}
-          />
+//       <main className={profilePageStyles.mainSection}>
+//         <div className={profilePageStyles.profileLayout}>
+//           <ProfileBioCard
+//             username={userName}
+//             locations={userLocations}
+//             dob={userDob}
+//             gender={userGender}
+//             bio={userBio}
+//           />
 
-          <ProfileBioCard/>
+//           <ProfileBioCard/>
 
-          <ProfileSports username={username}/>
+//           <ProfileSports username={username}/>
 
-          <ProfileConnections />
-        </div>
-      </main>
+//           <ProfileConnections />
+//         </div>
+//       </main>
 
-      {/* Bottom Nav for mobile */}
-      <div className={profilePageStyles.mobileNav}>
-        <NavBar/>
-      </div>
-      <Footer/>
-    </>
-  );
-}
+//       {/* Bottom Nav for mobile */}
+//       <div className={profilePageStyles.mobileNav}>
+//         <NavBar/>
+//       </div>
+//       <Footer/>
+//     </>
+//   );
+// }
