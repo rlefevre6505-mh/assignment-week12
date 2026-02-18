@@ -59,7 +59,7 @@ export default function LocationComponent({ userid, locations }) {
         choices will appear. When you click &quot;Submit&quot;, the top entry in
         that list will be selected.{" "}
       </h2>
-      <form className={setupformStyles.form}>
+      <div className={setupformStyles.form}>
         <label className={setupformStyles.form}>Search</label>
         <p>{filteredLocations.length}</p>
         <input
@@ -81,7 +81,7 @@ export default function LocationComponent({ userid, locations }) {
             Submit
           </button>
         </div>
-      </form>
+      </div>
     </main>
   );
 }
