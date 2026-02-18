@@ -2,28 +2,31 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
-    background: var(--colour-accent);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-bottom: var(--spacing-md);
+    background: var(--colour-white);
+    /* border-bottom: 1px solid rgba(0,0,0,0.1); */
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
 }
 
 .userPhoto{
-    width: 100px;
-    height: 100px;
+    width: 7rem;
+    height: 7rem;
     border-radius: 50%;
     background: #cfcfcf;
-    object-fit: cover;
+    padding: 1rem;
 }
 
 .profileBioCardContent{
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
+    padding-left: 1rem;
 }
 
 .username{
     font-size: 1.4rem;
     font-family: var(--font-heading);
+    font-weight: 500;
 }
 
 .p{
