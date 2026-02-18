@@ -7,6 +7,7 @@ import ProfileSports from "@/components/ProfileSports";
 import ProfileConnections from "@/components/ProfileConnections";
 import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css";
+import { Protect, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
 
 export default async function profilePage({ params }) {
   const { username } = params;
@@ -61,36 +62,40 @@ export default async function profilePage({ params }) {
 
   return (
     <>
-      <header className={profilePageStyles.headerSection}>
-        <Header>
-          {/* Top Nav for desktop */}
+      <Protect
+        fallback={<p>Users that are not signed in cannot view this page.</p>}
+      >
+        <header className={profilePageStyles.headerSection}>
+          <Header>
+            {/* Top Nav for desktop */}
+            <NavBar />
+          </Header>
+        </header>
+
+        <main className={profilePageStyles.mainSection}>
+          <div className={profilePageStyles.profileLayout}>
+            <ProfileBioCard
+              username={userName}
+              locations={locationArray}
+              dob={1}
+              gender={userGender}
+              bio={userBio}
+            />
+
+            {/* <ProfileBioCard/> */}
+
+            <ProfileSports username={username} />
+
+            <ProfileConnections />
+          </div>
+        </main>
+
+        {/* Bottom Nav for mobile */}
+        <div className={profilePageStyles.mobileNav}>
           <NavBar />
-        </Header>
-      </header>
-
-      <main className={profilePageStyles.mainSection}>
-        <div className={profilePageStyles.profileLayout}>
-          <ProfileBioCard
-            username={userName}
-            locations={locationArray}
-            dob={1}
-            gender={userGender}
-            bio={userBio}
-          />
-
-          {/* <ProfileBioCard/> */}
-
-          <ProfileSports username={username} />
-
-          <ProfileConnections />
         </div>
-      </main>
-
-      {/* Bottom Nav for mobile */}
-      <div className={profilePageStyles.mobileNav}>
-        <NavBar />
-      </div>
-      <Footer />
+        <Footer />
+      </Protect>
     </>
   );
 }
