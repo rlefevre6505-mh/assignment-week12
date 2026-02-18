@@ -5,7 +5,7 @@ import {FaFacebook, FaInstagram, FaTwitter} from "react-icons/fa"
 
 export default function Footer(){
     return(
-        <footer>
+        <footer className={footerStyles.footerContainer}>
         <p className={footerStyles.p}>Kickabout (c)</p>
 
         <div className={footerStyles.socialMediaLogoContainer}>

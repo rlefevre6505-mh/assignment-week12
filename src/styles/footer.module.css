@@ -3,3 +3,9 @@
 .socialMediaLogoContainer{}
 
 .socialMediaLogo{}
+
+/* mobile */
+@media (max-width: 767px){
+.footerContainer{
+    display: none;
+}}

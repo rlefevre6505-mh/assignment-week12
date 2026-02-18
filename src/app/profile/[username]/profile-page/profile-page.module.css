@@ -1,5 +1,10 @@
+.headerSection{
+    background-color: var(--colour-accent);
+    color: var(--colour-primary)
+}
+
 .mainSection{
-    background-color: var(--color-accent);
+    background-color: var(--colour-accent);
     min-height: 100vh;
     padding: var(--spacing-lg) var(--spacing-md)
 }

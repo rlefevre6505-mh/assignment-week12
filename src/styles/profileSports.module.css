@@ -1,7 +1,12 @@
-.h2{}
+.h2{
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-sm)
+}
 
 .sportPlusLevel{
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--spacing-md)
 }
 
 .sportIcon{}
