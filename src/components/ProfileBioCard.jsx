@@ -18,6 +18,15 @@ export default function ProfileBioCard({
           alt="User's profile photo"
           className={profileBioCardStyles.userPhoto}
         />
+export default function ProfileBioCard(){
+    return(
+        <>
+        <section className={profileBioCardStyles.profileBioCardContainer}>
+
+            <img
+                src={"/icons/default-avatar.png"}
+                alt={`profile photo`}
+                className={profileBioCardStyles.userPhoto}/>
 
         <div className={profileBioCardStyles.profileBioCardContent}>
           <h2 className={profileBioCardStyles.username}>

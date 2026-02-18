@@ -1,6 +1,7 @@
 .headerSection{
     background-color: var(--colour-accent);
-    color: var(--colour-primary)
+    color: var(--colour-primary);
+
 }
 
 .mainSection{
@@ -10,10 +11,10 @@
 }
 
 .profileLayout{
-    max-width: 1100px;
+    max-width: 600px;
     margin: 0 auto;
     display: grid;
-    gap: var(--spacing-lg)
+    gap: var(--spacing-md)
 }
 
 
@@ -34,4 +35,14 @@
     .profileLayout{
         gap: var(--spacing-xl)
     }
+}
+
+@media(min-width: 768px){
+    .mobileNav{
+        display: none;
+    }
+}
+
+.mobileNav{
+    display: block
 }

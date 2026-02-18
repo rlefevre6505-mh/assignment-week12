@@ -83,6 +83,13 @@ export default async function profilePage() {
   // console.log("userLocations:");
   // console.log(userLocations);
   return (
+// !Do i need to change username to clerk_id here?
+
+export default function profilePage({params}) {
+
+  const {username} = params;
+
+  return(
     <>
       <header className={profilePageStyles.headerSection}>
         <Header>
@@ -101,15 +108,19 @@ export default async function profilePage() {
             bio={userBio}
           />
 
-          <ProfileSports />
+          <ProfileBioCard/>
+
+          <ProfileSports username={username}/>
 
           <ProfileConnections />
         </div>
       </main>
 
       {/* Bottom Nav for mobile */}
-      <NavBar />
-      <Footer />
+      <div className={profilePageStyles.mobileNav}>
+        <NavBar/>
+      </div>
+      <Footer/>
     </>
   );
 }
