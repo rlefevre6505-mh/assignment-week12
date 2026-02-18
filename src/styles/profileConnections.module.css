@@ -1,7 +1,16 @@
 .h2{
-
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-sm)
 }
 
 .connectedUsers{
-    
+    display: flex;
+    gap: var(--spacing-md)
+}
+
+.connectedUsers img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #cfcfcf;
 }

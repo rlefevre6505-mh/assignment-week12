@@ -9,10 +9,12 @@ import profilePageStyles from "@/app/profile/[username]/profile-page/profile-pag
 export default function profilePage() {
   return(
     <>
+    <header className={profilePageStyles.headerSection}>
       <Header>
       {/* Top Nav for desktop */}
         <NavBar/>
       </Header>
+    </header>
 
       <main className={profilePageStyles.mainSection}>
 
