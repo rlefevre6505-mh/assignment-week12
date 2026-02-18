@@ -6,8 +6,11 @@ export default function ProfileBioCard(){
     return(
         <>
         <section className={profileBioCardStyles.profileBioCardContainer}>
-            
-            <img src="#" alt="User's profile photo" className={profileBioCardStyles.userPhoto}/>
+
+            <img
+                src={"/icons/default-avatar.png"}
+                alt={`profile photo`}
+                className={profileBioCardStyles.userPhoto}/>
 
             <div className={profileBioCardStyles.profileBioCardContent}>
                 

@@ -11,10 +11,10 @@
 }
 
 .profileLayout{
-    max-width: 1100px;
+    max-width: 600px;
     margin: 0 auto;
     display: grid;
-    gap: var(--spacing-lg)
+    gap: var(--spacing-md)
 }
 
 
