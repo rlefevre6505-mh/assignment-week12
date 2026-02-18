@@ -76,9 +76,10 @@ export default async function feedPage() {
 
   return (
     <>
-      <Header />
-
-      <NavBar />
+      <Header>
+        <NavBar />
+      </Header>
+      
 
       <h1 className={feedStyles.pageTitle}>Your matches</h1>
 

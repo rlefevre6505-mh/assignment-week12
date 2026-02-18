@@ -3,31 +3,69 @@
 // TODO: ADD LOGIC so that the sport cards that show on the page are the ones that user has selected
 
 import profileSportsStyle from "@/styles/profileSports.module.css"
-import SportIcon from "./SportIcon"
+import SportIcon from "./SportIcon";
 import { sportsIconData } from "@/data/sports";
 import {Fragment} from "react"
+import { levelMap } from "@/data/levels";
+import {db} from "@/utils/dbConnection"
+import SportCard from "./SportIcon";
+import { auth } from "@clerk/nextjs/server";
 
-export default function ProfileSports(){
+// !Do I need to change username/screen_name here to clerk_id?
+
+export default async function ProfileSports({username}){
+
+    const { userId } = await auth();
+  const queryUser = await db.query(
+    `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
+    [userId],
+  );
+  const user = queryUser.rows[0].id;
+
+    // const userQuery = await db.query(
+    //     `SELECT id FROM w12_app_users WHERE id = $1`,
+    //     [username]
+    // )
+
+    // console.log("Username:", username)
+
+    // const user = userQuery.rows[0];
+
+    if (!user) {
+        return <p>User not found.</p>;
+    }
+
+    const sportsQuery = await db.query(
+        `SELECT sport_id, sport_level_id
+        FROM w12_user_sports
+        WHERE user_id = $1`,
+        [4]
+    )
+
+    const userSports = sportsQuery.rows
+
     return(
         <>
         <h2 className={profileSportsStyle.h2}>Sports</h2>
         
-        {/* logic here to fetch sports data and levels from db, use .map to create a card for each one*/}
         <div className={profileSportsStyle.sportPlusLevel}>
 
-            {/* TODO: BELOW .map will render all from the array - need to edit so it only renders those selected by the user */}
-            {sportsIconData.map((sport)=>(
-                <Fragment key={sport.id}>
-                <SportIcon
-                    // key={sport.id}
-                    name={sport.name}
-                    icon={sport.icon}
-                    />
-                <p>ability level goes here</p>
-                </Fragment>
-            ))}
-            {/* <SportIcon className={profileSportsStyle.sportIcon}/> */}
-            {/* <p className={profileSportsStyle.abilityLevel}>Ability Level</p> */}
+            {userSports.map((sport)=>{
+                const sportData = sportsIconData.find(
+                    (item) => item.id === sport.sport_id
+                );
+
+                if (!sportData) return null;
+
+                return(
+                    <SportIcon
+                        key={sport.sport_id}
+                        name={sportData.name}
+                        icon={sportData.icon}
+                        level={levelMap[sport.sport_level_id]}/>
+                )
+            })}
+
         </div>
         </>
     )

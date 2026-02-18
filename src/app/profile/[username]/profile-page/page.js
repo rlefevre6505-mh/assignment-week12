@@ -6,7 +6,12 @@ import ProfileConnections from "@/components/ProfileConnections";
 import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css"
 
-export default function profilePage() {
+// !Do i need to change username to clerk_id here?
+
+export default function profilePage({params}) {
+
+  const {username} = params;
+
   return(
     <>
     <header className={profilePageStyles.headerSection}>
@@ -22,14 +27,16 @@ export default function profilePage() {
 
           <ProfileBioCard/>
 
-          <ProfileSports/>
+          <ProfileSports username={username}/>
 
           <ProfileConnections/>
         </div>
       </main>
 
       {/* Bottom Nav for mobile */}
-      <NavBar/>
+      <div className={profilePageStyles.mobileNav}>
+        <NavBar/>
+      </div>
       <Footer/>
     </>
   )

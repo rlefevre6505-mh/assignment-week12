@@ -1,20 +1,27 @@
 
 .sportCard{
-    background: var(--colour-accent);
+    background: white;
     border-radius: var(--radius-md);
     padding: var(--spacing-md);
     text-align: center;
     box-shadow: var(--shadow-soft);
     transition: 0.2s ease;
+
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    height: 12rem;
+    align-items: center;
+    justify-content: center;
 }
 
 .sportCard:hover{
     transform: translateY(-4px);
 }
 .sportIcon{
-    width: 50px;
-    height: 50px;
-    margin-bottom: var(--spacing-xs)
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: var(--spacing-sm)
 }
 
 .sportName{

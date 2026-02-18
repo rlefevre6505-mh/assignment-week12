@@ -2,29 +2,48 @@
 
 import matchesListStyles from "@/styles/matchesList.module.css"
 import SportCard from "./SportIcon"
+import Link from "next/link"
 
-export default function MatchesList(){
+export default function MatchesList({matches}){
 
     // TODO: add .map logic to show all cards for users who 'match' within the matches Container
+
+    if (!matches || matches.length === 0){
+        return <p>No matches yet!</p>
+    }
 
     return(
         <>
         <section className={matchesListStyles.matchesContainer}>
-            <div className={matchesListStyles.matchUserBio}>
-                <img src="#" alt="User's profile photo" className={matchesListStyles.matchUserPhoto}/>
+            {matches.map((match)=>(
+                <Link
+                    key={match.id}
+                    href={`/profile/${match.screen_name}/profile-page`}
+                    className={matchesListStyles.matchCard}>
 
-                <div className={matchesListStyles.matchUserContent}>
-                {/* TODO: Add logic so username/location is dynamic */}
-                    <h2 className={matchesListStyles.username}>Username</h2>
-                    <p className={matchesListStyles.location}>Location</p>
-                </div>
+                    <div className={matchesListStyles.matchUserBio}>
+                        <img
+                            src={match.profile_photo || "/icons/default-avatar.png"}
+                            alt={`${match.screen_name}'s profile`}
+                            className={matchesListStyles.matchUserPhoto}/>
+                    </div>
 
-                <div className={matchesListStyles.matchUserSports}>
+                    <div className={matchesListStyles.matchUserContent}>
+                        <h2 className={matchesListStyles.username}>
+                            {match.screen_name}
+                        </h2>
+                        <p className={matchesListStyles.location}>
+                            {match.town_name}
+                        </p>
+                    </div>
+
+                    {/* <div className={matchesListStyles.matchUserSports}>
                     {/* TODO: insert here sport cards corresponding to all sports that user has selected */}
-                    <SportCard/>
-                </div>
-
-            </div>
+                        {/* <SportIcon/> */}
+                    {/* </div>  */}
+                    </Link>
+                    ))}
+            
         </section>
         </>
     )
