@@ -1,12 +1,10 @@
 "use client";
 import * as SignIn from "@clerk/elements/sign-in";
 import * as Clerk from "@clerk/elements/common";
-// import { ClerkLoaded } from "@clerk/nextjs";
 
 export default function signInPage() {
   return (
     <div>
-      {/* <ClerkLoaded> */}
       <SignIn.Root>
         <SignIn.Step name="start">
           <Clerk.Field name="identifier">
@@ -22,7 +20,6 @@ export default function signInPage() {
           <SignIn.Action submit>Sign In</SignIn.Action>
         </SignIn.Step>
       </SignIn.Root>
-      {/* </ClerkLoaded> */}
     </div>
   );
 }

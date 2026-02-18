@@ -29,20 +29,7 @@ export default async function feedPage() {
     [userId],
   );
   const user = queryUser.rows[0].id;
-
-  // const queryLocations = await db.query(
-  //   "SELECT location_id FROM w12_user_locations WHERE user_id = $1",
-  //   [4],
-  // );
-  // const locations = queryLocations.rows;
-  // console.log(locations);
-
-  // const querySports = await db.query(
-  //   "SELECT sport_id, sport_level_id FROM w12_user_sports WHERE user_id = $1",
-  //   [4],
-  // );
-  // const sports = querySports.rows;
-  // console.log(sports);
+  console.log(userId);
 
   const queryMatches = await db.query(
     `
