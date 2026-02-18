@@ -29,28 +29,15 @@ export default async function feedPage() {
     [userId],
   );
   const user = queryUser.rows[0].id;
-
-  // const queryLocations = await db.query(
-  //   "SELECT location_id FROM w12_user_locations WHERE user_id = $1",
-  //   [4],
-  // );
-  // const locations = queryLocations.rows;
-  // console.log(locations);
-
-  // const querySports = await db.query(
-  //   "SELECT sport_id, sport_level_id FROM w12_user_sports WHERE user_id = $1",
-  //   [4],
-  // );
-  // const sports = querySports.rows;
-  // console.log(sports);
+  console.log(userId);
 
   const queryMatches = await db.query(
     `
     WITH filtered_locations AS (
     SELECT * FROM w12_app_users WHERE id IN
     (SELECT DISTINCT user_id FROM w12_user_locations WHERE location_id IN
-    (SELECT location_id FROM w12_user_locations WHERE user_id = $1))),
-
+    (SELECT location_id FROM w12_user_locations WHERE user_id = $1)))
+    ,
     filtered_sports AS (
     SELECT * FROM w12_app_users WHERE id IN
     (SELECT DISTINCT user_id FROM w12_user_sports WHERE sport_id IN
@@ -58,28 +45,19 @@ export default async function feedPage() {
 
     SELECT *
     FROM filtered_locations
-    WHERE id IN (SELECT id FROM filtered_sports)
-    `,
-    [4],
+    WHERE id <> $1 
+    AND id IN (SELECT id FROM filtered_sports)
+  `,
+    [user],
   );
   const matches = queryMatches.rows;
   console.table(matches);
-
-  // const queryMatchSports = await db.query(
-  //   `SELECT * FROM w12_app_users WHERE id IN
-  //   (SELECT DISTINCT user_id FROM w12_user_sports WHERE sport_id IN
-  //   (SELECT sport_id FROM w12_user_sports WHERE user_id = $1))`,
-  //   [26],
-  // );
-  // const matchSports = queryMatchSports.rows;
-  // console.table(matchSports);
 
   return (
     <>
       <Header>
         <NavBar />
       </Header>
-      
 
       <h1 className={feedStyles.pageTitle}>Your matches</h1>
 
