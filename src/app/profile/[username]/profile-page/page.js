@@ -79,17 +79,16 @@ export default async function profilePage({ params }) {
           />
 
           {/* <ProfileBioCard/> */}
+          <div className={profilePageStyles.sportSection}>
+            <ProfileSports username={username} />
+          </div>
 
-          <ProfileSports username={username} />
-
-          <ProfileConnections />
+          {/* <ProfileConnections /> */}
         </div>
       </main>
 
-      {/* Bottom Nav for mobile */}
-      <div className={profilePageStyles.mobileNav}>
-        <NavBar />
-      </div>
+
+
       <Footer />
     </>
   );

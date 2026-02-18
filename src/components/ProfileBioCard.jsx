@@ -21,14 +21,14 @@ export default function ProfileBioCard({
 
         <div className={profileBioCardStyles.profileBioCardContent}>
           <h2 className={profileBioCardStyles.username}>
-            Username: {username}
+            {username}
           </h2>
           <p className={profileBioCardStyles.p}>
-            Location: {locations[0]}, {locations[1]}, {locations[2]}
+            {locations[0]}, {locations[1]}, {locations[2]}
           </p>
-          <p className={profileBioCardStyles.p}>D.O:B: {dob}</p>
-          <p className={profileBioCardStyles.p}>Gender: {gender}</p>
-          <p className={profileBioCardStyles.p}>Bio: {bio}</p>
+          <p className={profileBioCardStyles.p}>D.O.B: {dob}</p>
+          <p className={profileBioCardStyles.p}>{gender}</p>
+          <p className={profileBioCardStyles.p}>{bio}</p>
         </div>
       </section>
     </>
