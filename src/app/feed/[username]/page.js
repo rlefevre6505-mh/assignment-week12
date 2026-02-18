@@ -28,7 +28,7 @@ export default async function feedPage() {
     `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
   );
-  // const user = queryUser.rows[0].id
+  const user = queryUser.rows[0].id;
 
   // const queryLocations = await db.query(
   //   "SELECT location_id FROM w12_user_locations WHERE user_id = $1",
@@ -44,12 +44,35 @@ export default async function feedPage() {
   // const sports = querySports.rows;
   // console.log(sports);
 
-  // const queryMatches = await db.query(
-  //   `SELECT id, screen_name, dob, gender, bio, sport_id, sport_level_id FROM w12_app_users FULL JOIN w12_user_sports on w12_app_users.id = w12_user_sports.user_id WHERE `,
-  //   // nested query may be needed to complete this - "where any of the current user's locations match any other user's location"
+  const queryMatches = await db.query(
+    `
+    WITH filtered_locations AS (
+    SELECT * FROM w12_app_users WHERE id IN
+    (SELECT DISTINCT user_id FROM w12_user_locations WHERE location_id IN
+    (SELECT location_id FROM w12_user_locations WHERE user_id = $1))),
+
+    filtered_sports AS (
+    SELECT * FROM w12_app_users WHERE id IN
+    (SELECT DISTINCT user_id FROM w12_user_sports WHERE sport_id IN
+    (SELECT sport_id FROM w12_user_sports WHERE user_id = $1)))
+
+    SELECT *
+    FROM filtered_locations
+    WHERE id IN (SELECT id FROM filtered_sports)
+    `,
+    [4],
+  );
+  const matches = queryMatches.rows;
+  console.table(matches);
+
+  // const queryMatchSports = await db.query(
+  //   `SELECT * FROM w12_app_users WHERE id IN
+  //   (SELECT DISTINCT user_id FROM w12_user_sports WHERE sport_id IN
+  //   (SELECT sport_id FROM w12_user_sports WHERE user_id = $1))`,
+  //   [26],
   // );
-  // const matches = queryMatches.rows;
-  // console.table(matches);
+  // const matchSports = queryMatchSports.rows;
+  // console.table(matchSports);
 
   return (
     <>
