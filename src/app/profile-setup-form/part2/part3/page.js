@@ -10,7 +10,6 @@ export default async function ProfileSetupFormPage() {
   const querySports = await db.query(`SELECT * FROM w12_sport_list AS sports`);
   const sports = querySports.rows;
   // console.log(sports);
-
   const queryLevels = await db.query(
     `SELECT * FROM w12_sport_levels AS levels`,
   );
@@ -18,7 +17,7 @@ export default async function ProfileSetupFormPage() {
   // console.log(levels);
 
   const queryUser = await db.query(
-    `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
+    `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
   );
   const user = queryUser.rows[0].id;
@@ -26,7 +25,7 @@ export default async function ProfileSetupFormPage() {
   async function handleSubmit(rawFormData) {
     "use server";
     const formValues = {
-      user_id: user,
+      // user_id: user,
       sport_id: rawFormData.get("sport_1"),
       sport_level_id: rawFormData.get("level_1"),
     };

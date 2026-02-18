@@ -14,6 +14,7 @@ export default async function profileEditFormPage2() {
     [userId],
   );
   const user = queryUser.rows[0].id;
+  console.log(user);
 
   // const currentLocation = await db.query(
   //   `SELECT id FROM w12_app_users JOIN w12_user_locations ON w12_user_locations.user_id = w12_app_users.id
