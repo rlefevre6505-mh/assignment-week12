@@ -56,7 +56,7 @@ export default async function profilePage({ params }) {
   const myCounty = myLocation.county_unitary;
   const myCountry = myLocation.country;
   const locationArray = [myTown, myCounty, myCountry];
-
+  //comment
   console.log(locationArray);
 
   return (
