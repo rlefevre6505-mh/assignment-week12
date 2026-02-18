@@ -13,6 +13,7 @@ export default function NavBar() {
   const params = useParams();
   const username = params?.username;
 
+  // TODO: change username to clerk_id in links below?
 
   return (
     <nav className={navBarStyles.nav}>
@@ -45,7 +46,7 @@ export default function NavBar() {
       </Link>
 
       <Link 
-          href={`/profile/${username}`} 
+          href={`/profile/${username}/profile-page`} 
           className={`${navBarStyles.navLink}
           ${pathname.startsWith("/profile") ? navBarStyles.active : ""}`}>
         <FaUser className={navBarStyles.icon} />
