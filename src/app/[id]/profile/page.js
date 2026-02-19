@@ -8,13 +8,14 @@ import ProfileConnections from "@/components/ProfileConnections";
 import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css";
 
-export default async function profilePage({ params }) {
-  const { username } = params;
-  const { userId } = await auth();
+export default async function otherProfilePage({ params }) {
+  // const { userId } = await auth();
+  const { id } = await params;
+  // const { userId } = await auth();
 
   const queryUser = await db.query(
-    `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
-    [userId],
+    `SELECT * FROM w12_app_users WHERE id = $1`,
+    [id],
   );
   console.log("queryRows");
   console.log(queryUser.rows[0]);
@@ -73,7 +74,7 @@ export default async function profilePage({ params }) {
             bio={userBio}
           />
 
-          <ProfileSports username={username} />
+          <ProfileSports username={userName} />
         </div>
       </main>
 

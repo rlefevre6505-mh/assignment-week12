@@ -1,7 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import LocationComponent from "@/components/LocationComponent";
 import { db } from "../../../utils/dbConnection";
-import { Protect } from "@clerk/nextjs";
 
 export default async function profileSetupFormPageCont() {
   const { userId } = await auth();
@@ -18,15 +17,11 @@ export default async function profileSetupFormPageCont() {
 
   return (
     <>
-      <Protect
-        fallback={<p>Users that are not signed in cannot view this page.</p>}
-      >
-        <LocationComponent
-          userid={user}
-          locations={queryLocations.rows}
-          key={queryLocations.rows.id}
-        />{" "}
-      </Protect>
+      <LocationComponent
+        userid={user}
+        locations={queryLocations.rows}
+        key={queryLocations.rows.id}
+      />{" "}
     </>
   );
 }
