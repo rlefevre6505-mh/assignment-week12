@@ -101,76 +101,11 @@ export default async function Home() {
 
 
         {/* Rest of homepage always visible */}
-        {/* ABOUT SECTION */}
-        <section className={homepageStyles.aboutSection}>
-          <img
-            src="/images/football.png"
-            alt="animation of people playing football together"
-            className={homepageStyles.footballImage}
-          />
-          <p className={homepageStyles.aboutText}>
-            Ever wanted to try a new hobby, but don’t know where to start? <br/>
-            <br/>
-            We know it can be difficult to try something new - especially when that means joining an established club or team, often with the requirement to commit to a set schedule <br/>
-            <br/>
-            That’s why we created Kickabout - so you can find like-minded people in your area who want to try the same activities as you at a beginner level. No pressure. <br/>
-              <br/>
-            No competition. Just fun!
-          </p>
-        </section>
+        
 
-        {/* TODO: Add text into these cards */}
-        {/* HOW IT WORKS SECTION */}
-        <section className={homepageStyles.howItWorksSection}>
-          <h2 className={homepageStyles.howItWorksTitle}>How it works</h2>
+        
 
-          <div className={homepageStyles.howItWorksCards}>
-            <div className={homepageStyles.card}>
-              <h3 className={homepageStyles.cardTitle}>01 Create a profile</h3>
-              <p className={homepageStyles.cardText}>Tell us where you are and what sports you would like to get involved in. You can also share what level you are at with each sport for other players to know how new you are.</p>
-            </div>
-          )}
-        </header>
 
-        {/* If user logged out -> sign in/up buttons */}
-        {!userId ? (
-          <>
-            <h2 className={homepageStyles.h2}>
-              It&apos;s hard being a beginner.
-            </h2>
-
-            <h3 className={homepageStyles.h3}>
-              Take the pressure off and make friends with Kickabout
-            </h3>
-
-            <div className={homepageStyles.clerkLinks}>
-              <div className={homepageStyles.signUpLink}>
-                <SignUpButton />
-              </div>
-              <div className={homepageStyles.signInLink}>
-                <SignInButton />
-              </div>
-            </div>
-          </>
-        ) : (
-          // If user logged in -> view your matches button/sign out
-          <>
-            <h2 className={homepageStyles.h2}>{`Welcome ${screenName}!`}</h2>
-
-            <h3 className={homepageStyles.h3}>
-              Ready to find some friends to play with?
-            </h3>
-
-            {/* Link to matches */}
-            <Link
-              href={`/feed/${screenName}`}
-              className={homepageStyles.button}
-            >
-              <div>View your matches</div>
-            </Link>
-          </>
-        )}
-      </section>
 
       {/* Rest of homepage always visible */}
       {/* ABOUT SECTION */}
@@ -233,6 +168,7 @@ export default async function Home() {
             <p className={homepageStyles.cardText}>
               No explanation needed - have a good time!
             </p>
+          </div>
           </div>
         </section>
 
