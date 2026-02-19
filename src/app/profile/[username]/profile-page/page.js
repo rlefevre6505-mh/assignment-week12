@@ -63,7 +63,6 @@ export default async function profilePage({ params }) {
       >
         <header className={profilePageStyles.headerSection}>
           <Header>
-            {/* Top Nav for desktop */}
             <NavBar />
           </Header>
         </header>
@@ -78,42 +77,18 @@ export default async function profilePage({ params }) {
               bio={userBio}
             />
 
-            {/* <ProfileBioCard/> */}
+            
 
             <ProfileSports username={username} />
 
-            <ProfileConnections />
+
           </div>
         </main>
-
-        {/* Bottom Nav for mobile */}
-        <div className={profilePageStyles.mobileNav}>
-          <NavBar />
-        </Header>
-      </header>
-
-      <main className={profilePageStyles.mainSection}>
-        <div className={profilePageStyles.profileLayout}>
-          <ProfileBioCard
-            username={userName}
-            locations={locationArray}
-            age={age}
-            gender={userGender}
-            bio={userBio}
-          />
-
-          {/* <ProfileBioCard/> */}
-          <div className={profilePageStyles.sportSection}>
-            <ProfileSports username={username} />
-          </div>
-
-          {/* <ProfileConnections /> */}
-        </div>
-      </main>
 
 
 
       <Footer />
+      </Protect>
     </>
   );
 }

@@ -1,0 +1,43 @@
+.headerSection{
+    background-color: var(--colour-accent);
+    color: var(--colour-primary);
+
+}
+
+.mainSection{
+    background-color: var(--colour-accent);
+    min-height: 100vh;
+    padding: var(--spacing-lg) var(--spacing-md)
+}
+
+.profileLayout{
+    max-width: 600px;
+    margin: 0 auto;
+    display: grid;
+    gap: var(--spacing-sm)
+}
+
+
+.bioSection{
+
+}
+
+.sportsSection{
+    padding-top: 2rem;
+
+}
+
+.connectionsSection{
+    
+}
+
+/* RESPONSIVE */
+@media (min-width: 1024px){
+    .profileLayout{
+        gap: var(--spacing-sm)
+    }
+
+    
+}
+
+
