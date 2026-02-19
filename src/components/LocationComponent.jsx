@@ -9,7 +9,6 @@ export default function LocationComponent({ userid, locations }) {
   //search functionality state:
   const [searchLocation, setSearchLocation] = useState("");
   const [filteredLocations, setfilteredLocations] = useState([]);
-  // let showWarning = false;
   useEffect(() => {
     setfilteredLocations(filteredLocations);
   }, [filteredLocations]);
@@ -23,41 +22,47 @@ export default function LocationComponent({ userid, locations }) {
   }, [searchLocation, locations]);
 
   const handleChange = (e) => {
-    // showWarning = false;
     setSearchLocation(e.target.value);
   };
 
-  const handleSubmit = () => {
-    if (
-      filteredLocations.length === 0 ||
-      filteredLocations.length === locations.length
-    ) {
-      // showWarning = true;
-      console.error(
-        "Attempting to submit filteredLocations[0] but array is either empty or is the same length as locations (not filtered)",
-      );
-    } else {
-      const locationData = [
-        { user_id: userid, location_id: filteredLocations[0].id },
-      ];
-      SaveLocations(locationData);
-    }
-    // console.log("Redirect?");
+  //handlesubmit conditional will prevent submission if nothing has been typed or all locations have been filtered out
+  const handleSubmit = (e) => {
+    const clickedId = e.target.id;
+    const locationData = [{ user_id: userid, location_id: clickedId }];
+    SaveLocations(locationData);
+    //redirect user to next step
     redirect(`/profile-setup-form/part2/part3`);
   };
 
-  //clear search
-  //   const clearSearch = () => {
-  //     setSearchLocation("");
-  //     setfilteredLocations([]);
-  //   };
+  //for if user presses return key (hidden submit button)
+  const handleReturnKey = (e) => {
+    const key = e.keyCode || e.which;
+    if (key == 13) {
+      if (
+        filteredLocations.length === 0 ||
+        filteredLocations.length === locations.length
+      ) {
+        console.error(
+          "Attempting to submit filteredLocations[0] but array is either empty or is the same length as locations (not filtered)",
+        );
+      } else {
+        const locationData = [
+          { user_id: userid, location_id: filteredLocations[0].id },
+        ];
+        SaveLocations(locationData);
+      }
+      //redirect user to next step
+      redirect(`/profile-setup-form/part2/part3`);
+    } else {
+    }
+  };
+
   return (
     <main className={setupformStyles.main_section}>
       <h1 className={setupformStyles.heading}>Where are you based?</h1>
       <h2 className={setupformStyles.subheading}>
         Please type in the name of your home town/city, a list of possible
-        choices will appear. When you click &quot;Submit&quot;, the top entry in
-        that list will be selected.{" "}
+        choices will appear. When you see it, click it!.{" "}
       </h2>
       <div className={setupformStyles.form}>
         <label className={setupformStyles.form}>Search</label>
@@ -66,20 +71,27 @@ export default function LocationComponent({ userid, locations }) {
           tabIndex={0}
           type="text"
           onChange={(e) => handleChange(e)}
+          onKeyPress={(e) => handleReturnKey(e)}
           className={setupformStyles.input}
         />
-        {/* <p>{showWarning ? <p>Please Select a Location</p> : <p></p>}</p> */}
         <div>
           {filteredLocations.length != locations.length ? (
             filteredLocations.map((location) => (
-              <p key={location.id}>{location.town_name}</p>
+              <p
+                key={location.id}
+                id={location.id}
+                onClick={(e) => handleSubmit(e)}
+                className={setupformStyles.button}
+              >
+                {location.town_name}
+              </p>
             ))
           ) : (
             <p></p>
           )}
-          <button onClick={handleSubmit} className={setupformStyles.button}>
+          {/* <button onClick={handleReturnKey} className={setupformStyles.button}>
             Submit
-          </button>
+          </button> */}
         </div>
       </div>
     </main>
