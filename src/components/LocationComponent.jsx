@@ -2,10 +2,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { SaveLocations } from "../app/actions/SaveLocations";
+import { EditLocations } from "../app/actions/EditLocations";
 import { redirect } from "next/navigation";
 import setupformStyles from "@/styles/locationcomponent.module.css";
 
-export default function LocationComponent({ userid, locations }) {
+export default function LocationComponent({ userid, locations, route }) {
   //search functionality state:
   const [searchLocation, setSearchLocation] = useState("");
   const [filteredLocations, setfilteredLocations] = useState([]);
@@ -29,9 +30,17 @@ export default function LocationComponent({ userid, locations }) {
   const handleSubmit = (e) => {
     const clickedId = e.target.id;
     const locationData = [{ user_id: userid, location_id: clickedId }];
-    SaveLocations(locationData);
-    //redirect user to next step
-    redirect(`/profile-setup-form/part2/part3`);
+    if (route === "new") {
+      SaveLocations(locationData);
+      //redirect user to next step
+      redirect(`/profile-setup-form/part2/part3`);
+    } else {
+      EditLocations(locationData);
+      //redirect user to next step
+      redirect(
+        `/profile/${locationData.user_id}/profile-edit-form/part2/part3`,
+      );
+    }
   };
 
   //for if user presses return key (hidden submit button)
@@ -49,10 +58,18 @@ export default function LocationComponent({ userid, locations }) {
         const locationData = [
           { user_id: userid, location_id: filteredLocations[0].id },
         ];
-        SaveLocations(locationData);
+        if (route === "new") {
+          SaveLocations(locationData);
+          //redirect user to next step
+          redirect(`/profile-setup-form/part2/part3`);
+        } else {
+          EditLocations(locationData);
+        }
+        //redirect user to next step
+        redirect(
+          `/profile/${locationData.user_id}/profile-edit-form/part2/part3`,
+        );
       }
-      //redirect user to next step
-      redirect(`/profile-setup-form/part2/part3`);
     } else {
     }
   };
@@ -75,7 +92,7 @@ export default function LocationComponent({ userid, locations }) {
           name="locationSearch"
           id="locationSearch"
           onChange={(e) => handleChange(e)}
-          onKeyPress={(e) => handleReturnKey(e)}
+          onKeyDown={(e) => handleReturnKey(e)}
           className={setupformStyles.input}
         />
         <div>

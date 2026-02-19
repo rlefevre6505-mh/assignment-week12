@@ -4,7 +4,7 @@
 import sportIconStyles from "@/styles/sportIcon.module.css"
 import { sportsIconData } from "@/data/sports";
 import { levelMap } from "@/data/levels";
-import {db} from "@/utils/dbConnection"
+// import {db} from "@/utils/dbConnection"
 
 
 export default function SportIcon({name, icon, level, variant="default"}) {

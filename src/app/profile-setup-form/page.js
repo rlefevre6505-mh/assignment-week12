@@ -3,7 +3,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { db } from "../../utils/dbConnection";
 import setupFormStyles from "./profile-setup-form.module.css";
-import { Protect } from "@clerk/nextjs";
 
 export default async function ProfileSetupFormPage() {
   // pull clerk id and current date here
@@ -133,12 +132,11 @@ export default async function ProfileSetupFormPage() {
             className={setupFormStyles.input}
           ></textarea>
 
-          <button type="submit" className={setupFormStyles.button}>
-            Next
-          </button>
-        </form>
-      </main>
-    </Protect>
+        <button type="submit" className={setupFormStyles.button}>
+          Next
+        </button>
+      </form>
+    </main>
   );
 }
 // needed for w12_app_users: clerk_id, screen_name, dob, gender, current date, bio(optional)

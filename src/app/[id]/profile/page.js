@@ -7,16 +7,15 @@ import ProfileSports from "@/components/ProfileSports";
 import ProfileConnections from "@/components/ProfileConnections";
 import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css";
-import { Protect, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
-import Link from "next/link";
 
-export default async function profilePage({ params }) {
-  const { username } = params;
-  const { userId } = await auth();
+export default async function otherProfilePage({ params }) {
+  // const { userId } = await auth();
+  const { id } = await params;
+  // const { userId } = await auth();
 
   const queryUser = await db.query(
-    `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
-    [userId],
+    `SELECT * FROM w12_app_users WHERE id = $1`,
+    [id],
   );
   console.log("queryRows");
   console.log(queryUser.rows[0]);
@@ -35,7 +34,7 @@ export default async function profilePage({ params }) {
 
   //convert to full years
   const age = Math.abs(elapsed.getUTCFullYear() - 1970);
-  console.log("User is " + age + " years old ");
+  console.log("User is " + age + " old ");
 
   //matching location with user
   const queryUserLocations = await db.query(
@@ -59,34 +58,27 @@ export default async function profilePage({ params }) {
 
   return (
     <>
-      <Protect
-        fallback={<p>Users that are not signed in cannot view this page.</p>}
-      >
-        <header className={profilePageStyles.headerSection}>
-          <Header>
-            <NavBar />
-          </Header>
-        </header>
+      <header className={profilePageStyles.headerSection}>
+        <Header>
+          <NavBar />
+        </Header>
+      </header>
 
-        <main className={profilePageStyles.mainSection}>
-          <div className={profilePageStyles.profileLayout}>
-            <Link href={`/profile/${userId}/profile-edit-form`}>
-              Edit Profile
-            </Link>
-            <ProfileBioCard
-              username={userName}
-              locations={locationArray}
-              age={age}
-              gender={userGender}
-              bio={userBio}
-            />
+      <main className={profilePageStyles.mainSection}>
+        <div className={profilePageStyles.profileLayout}>
+          <ProfileBioCard
+            username={userName}
+            locations={locationArray}
+            dob={1}
+            gender={userGender}
+            bio={userBio}
+          />
 
-            <ProfileSports username={username} />
-          </div>
-        </main>
+          <ProfileSports username={userName} />
+        </div>
+      </main>
 
-        <Footer />
-      </Protect>
+      <Footer />
     </>
   );
 }

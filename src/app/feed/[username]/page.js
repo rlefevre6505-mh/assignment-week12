@@ -6,16 +6,29 @@ import feedStyles from "@/app/feed/[username]/feed.module.css";
 import { FaSort, FaFilter, FaGripLinesVertical } from "react-icons/fa";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "../../../utils/dbConnection";
-import { Protect, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
+// import { Protect, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
+import MatchesFilter from "@/components/MatchesFilter";
+import {redirect} from "next/navigation"
 
 export default async function feedPage() {
+  // logic to identify current user ID fron DB based on Clerk log in
   const { userId } = await auth();
   const queryUser = await db.query(
     `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
   );
   const user = queryUser.rows[0].id;
-  // console.log(userId);
+
+  // SINEADS CODE  FOR FILTERING ===
+  const userSportsQuery = await db.query(
+    `SELECT sport_id, sport_level_id
+    FROM w12_user_sports
+    WHERE user_id = $1`,
+    [user]
+  )
+  const userSports = userSportsQuery.rows;
+  // ================================
 
   const queryMatches = await db.query(
     `
@@ -67,10 +80,17 @@ export default async function feedPage() {
   // const matchSports = queryMatchSports.rows;
   // console.table(matchSports);
 
+  // ADDED THIS TO REPLACE PROTECT
+  if (!userId){
+    redirect("/")
+  }
+
+
+
   return (
-    <Protect
-      fallback={<p>Users that are not signed in cannot view this page.</p>}
-    >
+    // <Protect
+      // fallback={<p>Users that are not signed in cannot view this page.</p>}
+    // >
       <>
         <header className={feedStyles.headerSection}>
           <Header>
@@ -100,13 +120,19 @@ export default async function feedPage() {
           <hr className={feedStyles.lineBreak}></hr>
 
           <section className={feedStyles.matchesSection}>
-            <MatchesList matches={matchesWithSports} />
+            {/* <MatchesList matches={matchesWithSports} /> */}
+            <MatchesFilter
+              matches={matchesWithSports}
+              // userSports={matchSports.filter(
+              //   (s) => s.user_id === user
+              // )}
+              userSports={userSports}
+              />
           </section>
         </main>
 
         <Footer />
       </>
-    </Protect>
+    // </Protect>
   );
 }
-

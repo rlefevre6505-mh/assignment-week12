@@ -2,7 +2,6 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { db } from "../../../../utils/dbConnection";
 import setupFormStyles from "@/app/profile-setup-form/profile-setup-form.module.css";
-import { Protect } from "@clerk/nextjs";
 
 export default async function ProfileSetupFormPage() {
   const { userId } = await auth();

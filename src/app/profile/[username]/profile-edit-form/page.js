@@ -2,7 +2,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { db } from "@/utils/dbConnection";
 import setupFormStyles from "@/app/profile-setup-form/profile-setup-form.module.css";
-import { Protect, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
 
 export default async function ProfileEditFormPage({ params }) {
   const { username } = await params;
@@ -12,6 +11,15 @@ export default async function ProfileEditFormPage({ params }) {
   );
   const data = userInfoQuery.rows[0];
   console.log(username);
+
+  const dateDay = data.dob.getDate();
+  const dateMonth = data.dob.getMonth() + 1;
+  const dateYear = data.dob.getFullYear();
+  // const dateConcat = dateDa;
+  console.log(dateDay);
+  console.log(dateMonth);
+  console.log(dateYear);
+  // console.log(dateConcat);
 
   const user = userInfoQuery.rows[0].id;
   console.log(user);
@@ -108,11 +116,10 @@ export default async function ProfileEditFormPage({ params }) {
             defaultValue={data.bio}
           ></textarea>
 
-          <button type="submit" className={setupFormStyles.button}>
-            Next
-          </button>
-        </form>
-      </main>
-    </Protect>
+        <button type="submit" className={setupFormStyles.button}>
+          Next
+        </button>
+      </form>
+    </main>
   );
 }

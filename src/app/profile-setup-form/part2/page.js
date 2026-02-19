@@ -1,7 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import LocationComponent from "@/components/LocationComponent";
 import { db } from "../../../utils/dbConnection";
-import { Protect } from "@clerk/nextjs";
 
 export default async function profileSetupFormPageCont() {
   const { userId } = await auth();
@@ -12,7 +11,6 @@ export default async function profileSetupFormPageCont() {
     `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
   );
-  console.log(userId);
   const user = queryUser.rows[0].id;
   console.log(user);
 
@@ -25,6 +23,7 @@ export default async function profileSetupFormPageCont() {
           userid={user}
           locations={queryLocations.rows}
           key={queryLocations.rows.id}
+          route={"new"}
         />{" "}
       </Protect>
     </>
