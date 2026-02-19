@@ -14,7 +14,7 @@ export default async function ProfileSetupFormPage() {
   );
   const levels = queryLevels.rows;
   // console.log(levels);
-
+  console.log(userId);
   const queryUser = await db.query(
     `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
@@ -24,7 +24,7 @@ export default async function ProfileSetupFormPage() {
   async function handleSubmit(rawFormData) {
     "use server";
     const formValues = {
-      // user_id: user,
+      user_id: user,
       sport_id: rawFormData.get("sport_1"),
       sport_level_id: rawFormData.get("level_1"),
     };
@@ -66,7 +66,7 @@ export default async function ProfileSetupFormPage() {
         console.error(error);
       }
     }
-    redirect(`/feed/:username`);
+    redirect(`/feed/${userId}`);
   }
 
   return (
