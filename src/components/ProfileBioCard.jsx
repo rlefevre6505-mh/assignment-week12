@@ -6,7 +6,7 @@ import profileBioCardStyles from "@/styles/profileBioCard.module.css";
 export default function ProfileBioCard({
   username,
   locations,
-  dob,
+  age,
   gender,
   bio,
 }) {
@@ -20,14 +20,17 @@ export default function ProfileBioCard({
         />
 
         <div className={profileBioCardStyles.profileBioCardContent}>
-          <h2 className={profileBioCardStyles.username}>
-            {username}
-          </h2>
+          <h2 className={profileBioCardStyles.username}>{username}</h2>
           <p className={profileBioCardStyles.p}>
             {locations[0]}, {locations[1]}, {locations[2]}
           </p>
-          <p className={profileBioCardStyles.p}>D.O.B: {dob}</p>
-          <p className={profileBioCardStyles.p}>{gender}</p>
+          <p className={profileBioCardStyles.p}>{age} years old</p>
+          {/* Gender's last character for "Prefer not to say " is an empty space */}
+          {gender != "Prefer not to say" ? (
+            <p className={profileBioCardStyles.p}>{gender}</p>
+          ) : (
+            <p className={profileBioCardStyles.p}></p>
+          )}
           <p className={profileBioCardStyles.p}>{bio}</p>
         </div>
       </section>
