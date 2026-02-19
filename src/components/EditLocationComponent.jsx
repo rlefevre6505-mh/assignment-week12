@@ -59,11 +59,15 @@ export default function LocationComponent({ userid, locations }) {
         that list will be selected.{" "}
       </h2>
       <div className={setupformStyles.form}>
-        <label className={setupformStyles.form}>Search</label>
+        <label className={setupformStyles.form} for="searchResult">
+          Search
+        </label>
         <p>{filteredLocations.length}</p>
         <input
           tabIndex={0}
           type="text"
+          name="searchResult"
+          id="searchResult"
           onChange={(e) => handleChange(e)}
           className={setupformStyles.input}
           // defaultValue={}
