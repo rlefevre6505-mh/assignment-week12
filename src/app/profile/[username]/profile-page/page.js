@@ -93,9 +93,31 @@ export default async function profilePage({ params }) {
         {/* Bottom Nav for mobile */}
         <div className={profilePageStyles.mobileNav}>
           <NavBar />
+        </Header>
+      </header>
+
+      <main className={profilePageStyles.mainSection}>
+        <div className={profilePageStyles.profileLayout}>
+          <ProfileBioCard
+            username={userName}
+            locations={locationArray}
+            dob={1}
+            gender={userGender}
+            bio={userBio}
+          />
+
+          {/* <ProfileBioCard/> */}
+          <div className={profilePageStyles.sportSection}>
+            <ProfileSports username={username} />
+          </div>
+
+          {/* <ProfileConnections /> */}
         </div>
-        <Footer />
-      </Protect>
+      </main>
+
+
+
+      <Footer />
     </>
   );
 }

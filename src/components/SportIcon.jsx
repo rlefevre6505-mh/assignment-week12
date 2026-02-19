@@ -7,20 +7,30 @@ import { levelMap } from "@/data/levels";
 import {db} from "@/utils/dbConnection"
 
 
-export default function SportIcon({name, icon, level}) {
+export default function SportIcon({name, icon, level, variant="default"}) {
 
 
   return (
-    <>
-      <div className={sportIconStyles.sportCard}>
+    <div
+      className={
+        variant === "mini"
+        ? sportIconStyles.sportCardMini
+        : sportIconStyles.sportCard
+      }>
+      
         <img
           src={icon}
           alt={`${name} icon`}
-          className={sportIconStyles.sportIcon}
+          className={
+            variant === "mini"
+            ?sportIconStyles.sportIconMini
+            : sportIconStyles.sportIcon}
         />
-        {/* <p className={sportIconStyles.sportName}>{name}</p> */}
+
+        {variant !== "mini" &&(
         <p className={sportIconStyles.sportLevel}>{level}</p>
-      </div>
-    </>
+        )}
+      
+    </div>
   );
 }

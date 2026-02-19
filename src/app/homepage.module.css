@@ -10,14 +10,46 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: var(--spacing-lg) var(--spacing-md);
+    /* padding: var(--spacing-lg) var(--spacing-md); */
     text-align: center;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--colour-primary);
+    z-index: 1000;
+    position: relative;
+    
+}
+
+.SignOutContainer{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.SignOutButton{
+    border: 1px solid var(--colour-accent);
+    color: var(--colour-accent);
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 500;
+    transition: 0.2s ease;
 }
 
 .appTitle{
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
 }
 
 .h2{
@@ -30,6 +62,15 @@
     max-width: 600px;
     margin-bottom: var(--spacing-md);
     opacity: 0.9;
+}
+
+.button{
+    padding: 0.6rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 500;
+    transition: 0.2s ease;
+    background-color: var(--colour-accent);
+    color: var(--colour-primary)
 }
 
 /* AUTH BUTTONS */
