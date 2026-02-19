@@ -136,4 +136,3 @@ export default async function ProfileSetupFormPage() {
     </main>
   );
 }
-// needed for w12_app_users: clerk_id, screen_name, dob, gender, current date, bio(optional)

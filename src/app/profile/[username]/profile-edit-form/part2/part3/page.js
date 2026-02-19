@@ -10,8 +10,6 @@ export default async function ProfileEditFormPage3({ params }) {
   const querySports = await db.query(`SELECT * FROM w12_sport_list AS sports`);
   const sports = querySports.rows;
 
-  console.log(username);
-
   const queryLevels = await db.query(
     `SELECT * FROM w12_sport_levels AS levels`,
   );
@@ -21,6 +19,8 @@ export default async function ProfileEditFormPage3({ params }) {
     [userId],
   );
   const user = userInfoQuery.rows[0].id;
+  console.log("user");
+  console.log(user);
 
   const levels = queryLevels.rows;
 
@@ -57,9 +57,9 @@ export default async function ProfileEditFormPage3({ params }) {
     (db.query(`DELETE * FROM w12_user_sports WHERE user_id = $1`), [user]);
 
     const formValues = {
-      sport_id: rawFormData.get("sport_1"),
+      user_id: rawFormData.get(user),
       sport_level_id: rawFormData.get("level_1"),
-      sport_id: rawFormData.get("sport_2"),
+      sport_id: rawFormData.get("sport_1"),
     };
 
     try {
@@ -101,8 +101,8 @@ export default async function ProfileEditFormPage3({ params }) {
       }
     }
 
-    revalidatePath(`/profile/${username}/profile-edit-form/part2/part3`);
-    redirect(`/feed/${username}`);
+    // revalidatePath(`/profile/${username}/profile-edit-form/part2/part3`);
+    // redirect(`/feed/${username}`);
   }
 
   return (

@@ -79,7 +79,7 @@ export default function LocationComponent({ userid, locations, route }) {
       <h1 className={setupformStyles.heading}>Where are you based?</h1>
       <h2 className={setupformStyles.subheading}>
         Please type in the name of your home town/city, a list of possible
-        choices will appear. When you see it, click it!{" "}
+        choices will appear. When you see it, select it!{" "}
       </h2>
       <div className={setupformStyles.form}>
         <label for="locationSearch" className={setupformStyles.form}>
@@ -110,19 +110,8 @@ export default function LocationComponent({ userid, locations, route }) {
           ) : (
             <p></p>
           )}
-          {/* <button onClick={handleReturnKey} className={setupformStyles.button}>
-            Submit
-          </button> */}
         </div>
       </div>
     </main>
   );
 }
-
-// {
-//   <input
-//         tabIndex={0}
-//         type="text"
-//         onChange={(e) => setSearchLocation(e.target.value)}
-//       />
-// }

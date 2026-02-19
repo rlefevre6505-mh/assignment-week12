@@ -12,20 +12,34 @@ export default async function ProfileEditFormPage({ params }) {
   const data = userInfoQuery.rows[0];
   console.log(username);
 
-  const dateDay = data.dob.getDate();
-  const dateMonth = data.dob.getMonth() + 1;
-  const dateYear = data.dob.getFullYear();
-  // const dateConcat = dateDa;
-  console.log(dateDay);
-  console.log(dateMonth);
-  console.log(dateYear);
-  // console.log(dateConcat);
+  //Converting dob data into string with correct format to pre-fill d.o.b field:
+
+  const dobDay = data.dob.getDate();
+  const dobMonth = data.dob.getMonth() + 1;
+  const dobYear = data.dob.getFullYear();
+
+  const checkDateSize = (date) => {
+    if (date.toString().length < 2) {
+      const string = "0" + `${date}`;
+      return string;
+    } else {
+      const string = `${date}`;
+      return string;
+    }
+  };
+
+  const dateDay = checkDateSize(dobDay);
+  const dateMonth = checkDateSize(dobMonth);
+  const dateYear = checkDateSize(dobYear);
+  const dateConcat = dateYear + "-" + dateMonth + "-" + dateDay;
 
   const user = userInfoQuery.rows[0].id;
   console.log(user);
 
   async function handleUpdate(rawFormData) {
     "use server";
+    console.log("dob: rawFormData.gett.dob");
+    console.log(rawFormData.get("dob"));
     const formValues = {
       screen_name: rawFormData.get("screen_name"),
       dob: rawFormData.get("dob"),
@@ -79,7 +93,7 @@ export default async function ProfileEditFormPage({ params }) {
           id="dob"
           required
           className={setupFormStyles.input}
-          defaultValue={data.dob}
+          defaultValue={dateConcat}
         />
 
         <label htmlFor="gender" className={setupFormStyles.form_label}>
