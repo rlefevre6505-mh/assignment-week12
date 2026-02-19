@@ -10,8 +10,6 @@ export default async function ProfileEditFormPage3({ params }) {
   const querySports = await db.query(`SELECT * FROM w12_sport_list AS sports`);
   const sports = querySports.rows;
 
-  console.log(username);
-
   const queryLevels = await db.query(
     `SELECT * FROM w12_sport_levels AS levels`,
   );
@@ -21,6 +19,8 @@ export default async function ProfileEditFormPage3({ params }) {
     [userId],
   );
   const user = userInfoQuery.rows[0].id;
+  console.log("user");
+  console.log(user);
 
   const levels = queryLevels.rows;
 
@@ -57,9 +57,9 @@ export default async function ProfileEditFormPage3({ params }) {
     (db.query(`DELETE * FROM w12_user_sports WHERE user_id = $1`), [user]);
 
     const formValues = {
-      sport_id: rawFormData.get("sport_1"),
+      user_id: rawFormData.get(user),
       sport_level_id: rawFormData.get("level_1"),
-      sport_id: rawFormData.get("sport_2"),
+      sport_id: rawFormData.get("sport_1"),
     };
 
     try {
@@ -101,135 +101,115 @@ export default async function ProfileEditFormPage3({ params }) {
       }
     }
 
-    revalidatePath(`/profile/${username}/profile-edit-form/part2/part3`);
-    redirect(`/feed/${username}`);
+    // revalidatePath(`/profile/${username}/profile-edit-form/part2/part3`);
+    // redirect(`/feed/${username}`);
   }
 
   return (
     <>
       {" "}
-      <Protect
-        fallback={<p>Users that are not signed in cannot view this page.</p>}
-      >
-        <main className={setupFormStyles.main_section}>
-          <h1 className={setupFormStyles.heading}>Edit Profile</h1>
-          <h2 className={setupFormStyles.subheading}>
-            Change your existing sports or levels, or add any new sports that
-            you want to try here
-          </h2>
-          <form action={handleUpdate} className={setupFormStyles.form}>
-            <label htmlFor="sport_1" className={setupFormStyles.form_label}>
-              Choose a sport
-            </label>
-            <select
-              name="sport_1"
-              id="sport_1"
-              required
-              defaultValue={data.sport_id}
-              className={setupFormStyles.input}
-            >
-              <option>--Please choose an option--</option>
-              {sports.map((sport, i) => {
-                return (
-                  <option key={`sportoption${i}`} value={sport.id}>
-                    {sport.sport_name}
-                  </option>
-                );
-              })}
-            </select>
-            <label htmlFor="level_1" className={setupFormStyles.form_label}>
-              Choose your level
-            </label>
-            <select
-              name="level_1"
-              id="level_1"
-              required
-              className={setupFormStyles.input}
-              defaultValue={data.sport_level_id}
-            >
-              <option>--Please choose an option--</option>
-              {levels.map((level, i) => {
-                return (
-                  <option key={`leveloption${i}`} value={level.id}>
-                    {level.level_name}
-                  </option>
-                );
-              })}
-            </select>
-            <label htmlFor="sport_2" className={setupFormStyles.form_label}>
-              Choose a sport
-            </label>
-            <select
-              name="sport_2"
-              id="sport_2"
-              className={setupFormStyles.input}
-            >
-              <option>--Please choose an option--</option>
-              {sports.map((sport, i) => {
-                return (
-                  <option key={`sportoption${i}`} value={sport.id}>
-                    {sport.sport_name}
-                  </option>
-                );
-              })}
-            </select>
-            <label htmlFor="level_2" className={setupFormStyles.form_label}>
-              Choose your level
-            </label>
-            <select
-              name="level_2"
-              id="level_2"
-              className={setupFormStyles.input}
-            >
-              <option>--Please choose an option--</option>
-              {levels.map((level, i) => {
-                return (
-                  <option key={`leveloption${i}`} value={level.id}>
-                    {level.level_name}
-                  </option>
-                );
-              })}
-            </select>
-            <label htmlFor="sport_3" className={setupFormStyles.form_label}>
-              Choose a sport
-            </label>
-            <select
-              name="sport_3"
-              id="sport_3"
-              className={setupFormStyles.input}
-            >
-              <option>--Please choose an option--</option>
-              {sports.map((sport, i) => {
-                return (
-                  <option key={`sportoption${i}`} value={sport.id}>
-                    {sport.sport_name}
-                  </option>
-                );
-              })}
-            </select>
-            <label htmlFor="level_3" className={setupFormStyles.form_label}>
-              Choose your level
-            </label>
-            <select
-              name="level_3"
-              id="level_3"
-              className={setupFormStyles.input}
-            >
-              <option>--Please choose an option--</option>
-              {levels.map((level, i) => {
-                return (
-                  <option key={`leveloption${i}`} value={level.id}>
-                    {level.level_name}
-                  </option>
-                );
-              })}
-            </select>
-            <button type="submit" className={setupFormStyles.button}>
-              Submit
-            </button>
-          </form>
-        </main>
-      </Protect>
+      <main className={setupFormStyles.main_section}>
+        <h1 className={setupFormStyles.heading}>Edit Profile</h1>
+        <h2 className={setupFormStyles.subheading}>
+          Change your existing sports or levels, or add any new sports that you
+          want to try here
+        </h2>
+        <form action={handleUpdate} className={setupFormStyles.form}>
+          <label htmlFor="sport_1" className={setupFormStyles.form_label}>
+            Choose a sport
+          </label>
+          <select
+            name="sport_1"
+            id="sport_1"
+            required
+            defaultValue={data.sport_id}
+            className={setupFormStyles.input}
+          >
+            <option>--Please choose an option--</option>
+            {sports.map((sport, i) => {
+              return (
+                <option key={`sportoption${i}`} value={sport.id}>
+                  {sport.sport_name}
+                </option>
+              );
+            })}
+          </select>
+          <label htmlFor="level_1" className={setupFormStyles.form_label}>
+            Choose your level
+          </label>
+          <select
+            name="level_1"
+            id="level_1"
+            required
+            className={setupFormStyles.input}
+            defaultValue={data.sport_level_id}
+          >
+            <option>--Please choose an option--</option>
+            {levels.map((level, i) => {
+              return (
+                <option key={`leveloption${i}`} value={level.id}>
+                  {level.level_name}
+                </option>
+              );
+            })}
+          </select>
+          <label htmlFor="sport_2" className={setupFormStyles.form_label}>
+            Choose a sport
+          </label>
+          <select name="sport_2" id="sport_2" className={setupFormStyles.input}>
+            <option>--Please choose an option--</option>
+            {sports.map((sport, i) => {
+              return (
+                <option key={`sportoption${i}`} value={sport.id}>
+                  {sport.sport_name}
+                </option>
+              );
+            })}
+          </select>
+          <label htmlFor="level_2" className={setupFormStyles.form_label}>
+            Choose your level
+          </label>
+          <select name="level_2" id="level_2" className={setupFormStyles.input}>
+            <option>--Please choose an option--</option>
+            {levels.map((level, i) => {
+              return (
+                <option key={`leveloption${i}`} value={level.id}>
+                  {level.level_name}
+                </option>
+              );
+            })}
+          </select>
+          <label htmlFor="sport_3" className={setupFormStyles.form_label}>
+            Choose a sport
+          </label>
+          <select name="sport_3" id="sport_3" className={setupFormStyles.input}>
+            <option>--Please choose an option--</option>
+            {sports.map((sport, i) => {
+              return (
+                <option key={`sportoption${i}`} value={sport.id}>
+                  {sport.sport_name}
+                </option>
+              );
+            })}
+          </select>
+          <label htmlFor="level_3" className={setupFormStyles.form_label}>
+            Choose your level
+          </label>
+          <select name="level_3" id="level_3" className={setupFormStyles.input}>
+            <option>--Please choose an option--</option>
+            {levels.map((level, i) => {
+              return (
+                <option key={`leveloption${i}`} value={level.id}>
+                  {level.level_name}
+                </option>
+              );
+            })}
+          </select>
+          <button type="submit" className={setupFormStyles.button}>
+            Submit
+          </button>
+        </form>
+      </main>
     </>
   );
 }
