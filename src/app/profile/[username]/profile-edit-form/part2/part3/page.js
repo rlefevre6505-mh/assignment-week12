@@ -1,3 +1,4 @@
+import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { db } from "@/utils/dbConnection";
@@ -5,8 +6,11 @@ import setupFormStyles from "@/app/profile-setup-form/profile-setup-form.module.
 
 export default async function ProfileEditFormPage3({ params }) {
   const { username } = await params;
+  const { userId } = await auth();
   const querySports = await db.query(`SELECT * FROM w12_sport_list AS sports`);
   const sports = querySports.rows;
+
+  console.log(username);
 
   const queryLevels = await db.query(
     `SELECT * FROM w12_sport_levels AS levels`,
@@ -14,7 +18,7 @@ export default async function ProfileEditFormPage3({ params }) {
 
   const userInfoQuery = await db.query(
     `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
-    [username],
+    [userId],
   );
   const user = userInfoQuery.rows[0].id;
 

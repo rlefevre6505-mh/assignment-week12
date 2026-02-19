@@ -11,17 +11,21 @@ export default async function profileSetupFormPageCont() {
     `SELECT * FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
   );
-  console.log(userId);
   const user = queryUser.rows[0].id;
   console.log(user);
 
   return (
     <>
-      <LocationComponent
-        userid={user}
-        locations={queryLocations.rows}
-        key={queryLocations.rows.id}
-      />{" "}
+      <Protect
+        fallback={<p>Users that are not signed in cannot view this page.</p>}
+      >
+        <LocationComponent
+          userid={user}
+          locations={queryLocations.rows}
+          key={queryLocations.rows.id}
+          route={"new"}
+        />{" "}
+      </Protect>
     </>
   );
 }
