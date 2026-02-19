@@ -7,7 +7,6 @@ import ProfileSports from "@/components/ProfileSports";
 import ProfileConnections from "@/components/ProfileConnections";
 import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css";
-import { Protect, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default async function profilePage({ params }) {
@@ -59,34 +58,30 @@ export default async function profilePage({ params }) {
 
   return (
     <>
-      <Protect
-        fallback={<p>Users that are not signed in cannot view this page.</p>}
-      >
-        <header className={profilePageStyles.headerSection}>
-          <Header>
-            <NavBar />
-          </Header>
-        </header>
+      <header className={profilePageStyles.headerSection}>
+        <Header>
+          <NavBar />
+        </Header>
+      </header>
 
-        <main className={profilePageStyles.mainSection}>
-          <div className={profilePageStyles.profileLayout}>
-            <Link href={`/profile/${userId}/profile-edit-form`}>
-              Edit Profile
-            </Link>
-            <ProfileBioCard
-              username={userName}
-              locations={locationArray}
-              age={age}
-              gender={userGender}
-              bio={userBio}
-            />
+      <main className={profilePageStyles.mainSection}>
+        <div className={profilePageStyles.profileLayout}>
+          <Link href={`/profile/${userId}/profile-edit-form`}>
+            Edit Profile
+          </Link>
+          <ProfileBioCard
+            username={userName}
+            locations={locationArray}
+            age={age}
+            gender={userGender}
+            bio={userBio}
+          />
 
-            <ProfileSports username={username} />
-          </div>
-        </main>
+          <ProfileSports username={username} />
+        </div>
+      </main>
 
-        <Footer />
-      </Protect>
+      <Footer />
     </>
   );
 }

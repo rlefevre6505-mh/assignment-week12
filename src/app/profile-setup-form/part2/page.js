@@ -16,16 +16,12 @@ export default async function profileSetupFormPageCont() {
 
   return (
     <>
-      <Protect
-        fallback={<p>Users that are not signed in cannot view this page.</p>}
-      >
-        <LocationComponent
-          userid={user}
-          locations={queryLocations.rows}
-          key={queryLocations.rows.id}
-          route={"new"}
-        />{" "}
-      </Protect>
+      <LocationComponent
+        userid={user}
+        locations={queryLocations.rows}
+        key={queryLocations.rows.id}
+        route={"new"}
+      />{" "}
     </>
   );
 }
