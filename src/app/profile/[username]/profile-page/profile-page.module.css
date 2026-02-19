@@ -14,7 +14,7 @@
     max-width: 600px;
     margin: 0 auto;
     display: grid;
-    gap: var(--spacing-md)
+    gap: var(--spacing-sm)
 }
 
 
@@ -23,6 +23,7 @@
 }
 
 .sportsSection{
+    padding-top: 2rem;
 
 }
 
@@ -33,16 +34,10 @@
 /* RESPONSIVE */
 @media (min-width: 1024px){
     .profileLayout{
-        gap: var(--spacing-xl)
+        gap: var(--spacing-sm)
     }
+
+    
 }
 
-@media(min-width: 768px){
-    .mobileNav{
-        display: none;
-    }
-}
 
-.mobileNav{
-    display: block
-}

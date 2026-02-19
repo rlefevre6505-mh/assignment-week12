@@ -1,4 +1,4 @@
-import { Unbounded } from "next/font/google";
+import { Unbounded, Raleway } from "next/font/google";
 import {
   ClerkProvider,
   SignInButton,
@@ -8,21 +8,19 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import "./globals.css";
-// import Footer from "@/components/Footer";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 const unbounded = Unbounded({
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
   variable: "--font-heading",
+  display: "swap",
+})
+
+const raleway = Raleway({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-body",
   display: "swap",
 })
 
@@ -34,7 +32,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en" className={unbounded.variable}>
+      <html lang="en" className={`${raleway.className} ${unbounded.variable}`}>
         <body>
           {children}
           {/* <Footer/> */}

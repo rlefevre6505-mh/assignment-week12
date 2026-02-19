@@ -6,30 +6,16 @@ import feedStyles from "@/app/feed/[username]/feed.module.css";
 import { FaSort, FaFilter, FaGripLinesVertical } from "react-icons/fa";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "../../../utils/dbConnection";
+import { Protect, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
 
 export default async function feedPage() {
-  // const queryUserDetails = await db.query(
-  //   `SELECT * FROM w12_app_users JOIN w12_user_sports ON w12_app_users.id = w12_user_sports.user_id ,
-  //   JOIN w12_user_locations ON w12_app_users.id = w12_user_locations.user_id WHERE w12_app_users.id = $1`
-  //   [4], //!! change this back to user!
-  // );
-  // const userDetails = queryUserDetails.rows;
-  // console.log(userDetails);
-
-  // const detailsArray = [];
-  // userDetails.map((detail) => {
-  //   location_id;
-  //   sport_id;
-  //   sport_level;
-  // });
-
   const { userId } = await auth();
   const queryUser = await db.query(
     `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
   );
   const user = queryUser.rows[0].id;
-  console.log(userId);
+  // console.log(userId);
 
   const queryMatches = await db.query(
     `
@@ -54,23 +40,23 @@ export default async function feedPage() {
   console.table(matches);
 
   // Code to fetch sports separately, becuuse each user could have more than 1 sport
-  const matchIds = matches.map(m=>m.id);
+  const matchIds = matches.map((m) => m.id);
   const sportsQuery = await db.query(
     `
     SELECT user_id, sport_id, sport_level_id
     FROM w12_user_sports
     WHERE user_id = ANY($1)`,
-    [matchIds]
-  )
+    [matchIds],
+  );
 
-  const matchSports = sportsQuery.rows
+  const matchSports = sportsQuery.rows;
 
-  const matchesWithSports = matches.map(match => {
-    return{
+  const matchesWithSports = matches.map((match) => {
+    return {
       ...match,
-      sports: matchSports.filter(s => s.user_id === match.id)
-    }
-  })
+      sports: matchSports.filter((s) => s.user_id === match.id),
+    };
+  });
 
   // const queryMatchSports = await db.query(
   //   `SELECT * FROM w12_app_users WHERE id IN
@@ -82,41 +68,45 @@ export default async function feedPage() {
   // console.table(matchSports);
 
   return (
-    <>
-    <header className={feedStyles.headerSection}>
-      <Header>
-        <NavBar />
-      </Header>
-    </header>
-      
-    <main className={feedStyles.mainSection}>
-      <h2 className={feedStyles.pageTitle}>Your matches</h2>
+    <Protect
+      fallback={<p>Users that are not signed in cannot view this page.</p>}
+    >
+      <>
+        <header className={feedStyles.headerSection}>
+          <Header>
+            <NavBar />
+          </Header>
+        </header>
 
-      <hr className={feedStyles.lineBreak}></hr>
+        <main className={feedStyles.mainSection}>
+          <h2 className={feedStyles.pageTitle}>Your matches</h2>
 
-      <section className={feedStyles.controls}>
-        <button className={feedStyles.sortButton}>
-          <FaSort className={feedStyles.icon} />
-          <span className={feedStyles.label}>Sort</span>
-        </button>
+          <hr className={feedStyles.lineBreak}></hr>
 
-        <FaGripLinesVertical className={feedStyles.lines} />
+          <section className={feedStyles.controls}>
+            <button className={feedStyles.sortButton}>
+              <FaSort className={feedStyles.icon} />
+              <span className={feedStyles.label}>Sort</span>
+            </button>
 
-        <button className={feedStyles.filterButton}>
-          <FaFilter className={feedStyles.icon} />
-          <span className={feedStyles.label}>Filter</span>
-        </button>
-      </section>
+            <FaGripLinesVertical className={feedStyles.lines} />
 
-      <hr className={feedStyles.lineBreak}></hr>
+            <button className={feedStyles.filterButton}>
+              <FaFilter className={feedStyles.icon} />
+              <span className={feedStyles.label}>Filter</span>
+            </button>
+          </section>
 
-      <section className={feedStyles.matchesSection}>
-        <MatchesList matches={matchesWithSports}/>
-      </section>
+          <hr className={feedStyles.lineBreak}></hr>
 
-      </main>
+          <section className={feedStyles.matchesSection}>
+            <MatchesList matches={matchesWithSports} />
+          </section>
+        </main>
 
-      <Footer />
-    </>
+        <Footer />
+      </>
+    </Protect>
   );
 }
+

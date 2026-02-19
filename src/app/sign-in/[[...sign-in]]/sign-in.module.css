@@ -68,6 +68,13 @@
   outline: black solid 3px;
 }
 
+.signUpLink {
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
 @media (min-width: 425px) {
   .main {
     padding: 2rem 4rem;
