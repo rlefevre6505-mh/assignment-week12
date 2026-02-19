@@ -109,6 +109,11 @@
     color: var(--colour-accent)
 }
 
+.signUpLink:hover{
+    transform: translateY(-4px)}
+.signInLink:hover{
+    transform: translateY(-4px)}
+
 /* ABOUT SECTION */
 
 .aboutSection{

@@ -58,11 +58,12 @@ export default async function profilePage({ params }) {
 
   return (
     <>
-      <header className={profilePageStyles.headerSection}>
-        <Header>
-          <NavBar />
-        </Header>
-      </header>
+      
+        <header className={profilePageStyles.headerSection}>
+          <Header>
+            <NavBar />
+          </Header>
+        </header>
 
       <main className={profilePageStyles.mainSection}>
         <div className={profilePageStyles.profileLayout}>
@@ -81,7 +82,8 @@ export default async function profilePage({ params }) {
         </div>
       </main>
 
-      <Footer />
+        <Footer />
+      
     </>
   );
 }

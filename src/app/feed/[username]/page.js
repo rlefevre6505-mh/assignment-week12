@@ -71,15 +71,6 @@ export default async function feedPage() {
     };
   });
 
-  // const queryMatchSports = await db.query(
-  //   `SELECT * FROM w12_app_users WHERE id IN
-  //   (SELECT DISTINCT user_id FROM w12_user_sports WHERE sport_id IN
-  //   (SELECT sport_id FROM w12_user_sports WHERE user_id = $1))`,
-  //   [26],
-  // );
-  // const matchSports = queryMatchSports.rows;
-  // console.table(matchSports);
-
   // ADDED THIS TO REPLACE PROTECT
   if (!userId){
     redirect("/")
@@ -88,9 +79,7 @@ export default async function feedPage() {
 
 
   return (
-    // <Protect
-      // fallback={<p>Users that are not signed in cannot view this page.</p>}
-    // >
+ 
       <>
         <header className={feedStyles.headerSection}>
           <Header>
@@ -103,29 +92,12 @@ export default async function feedPage() {
 
           <hr className={feedStyles.lineBreak}></hr>
 
-          <section className={feedStyles.controls}>
-            <button className={feedStyles.sortButton}>
-              <FaSort className={feedStyles.icon} />
-              <span className={feedStyles.label}>Sort</span>
-            </button>
-
-            <FaGripLinesVertical className={feedStyles.lines} />
-
-            <button className={feedStyles.filterButton}>
-              <FaFilter className={feedStyles.icon} />
-              <span className={feedStyles.label}>Filter</span>
-            </button>
-          </section>
-
-          <hr className={feedStyles.lineBreak}></hr>
 
           <section className={feedStyles.matchesSection}>
-            {/* <MatchesList matches={matchesWithSports} /> */}
+
             <MatchesFilter
               matches={matchesWithSports}
-              // userSports={matchSports.filter(
-              //   (s) => s.user_id === user
-              // )}
+
               userSports={userSports}
               />
           </section>
@@ -133,6 +105,6 @@ export default async function feedPage() {
 
         <Footer />
       </>
-    // </Protect>
+
   );
 }

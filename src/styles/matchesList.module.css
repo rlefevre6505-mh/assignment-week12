@@ -77,3 +77,74 @@
     /* height: 10px;
     width: 10px; */
 }
+
+/* SORT & FILTER */
+.controls{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: left;
+    align-items: center;
+    padding: 1rem;
+}
+
+.dropdownSelectWrapper{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--colour-primary);
+    border-radius: 999px;
+    padding: 0.3 0.8rem;
+    border: 1px solid var(--colour-accent)
+}
+
+.dropdownSelect{
+    flex: 1;
+    padding: 0.4rem 0;
+    font-weight: 500;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color:var(--colour-white);
+
+}
+
+.icon{    
+    width: 1rem;
+    height: 1rem;
+    color: var(--colour-white);
+    transition: color 0.2s ease;
+}
+
+/* HOVER & FOCUS */
+.dropdownSelectWrapper:hover,
+.dropdownSelectWrapper:focus-within{
+    background-color: var(--colour-white);
+    color: var(--colour-primary);
+    outline: none;
+}
+
+.dropdownSelectWrapper:hover .icon,
+.dropdownSelectWrapper:focus-within .icon{
+    color: var(--colour-primary)
+}
+
+
+
+.dropdownSelect option{
+    color: var(--colour-primary);
+    background-color: var(--colour-white);
+}
+
+
+
+.dropdownSelectWrapper:hover .dropdownSelect{
+    color: var(--colour-primary);
+    background-color: var(--colour-white);
+}
+
+
+
+
+
