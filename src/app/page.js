@@ -61,8 +61,12 @@ export default async function Home() {
                   </h3>
 
                   <div className={homepageStyles.clerkLinks}>
+                    <div className={homepageStyles.signUpLink}>
                     <SignUpButton />
+                    </div>
+                    <div className={homepageStyles.signInLink}>
                     <SignInButton/>
+                    </div>
                   </div>
                 </>
 
