@@ -1,17 +1,15 @@
-import { auth } from "@clerk/nextjs/server";
+// import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/dbConnection";
 import Header from "@/components/Header";
 import NavBar from "@/components/NavBar";
 import ProfileBioCard from "@/components/ProfileBioCard";
-import ProfileSports from "@/components/ProfileSports";
-import ProfileConnections from "@/components/ProfileConnections";
+import OtherProfileSports from "@/components/OtherProfileSports";
+// import ProfileConnections from "@/components/ProfileConnections";
 import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css";
 
-export default async function otherProfilePage({ params }) {
-  // const { userId } = await auth();
+export default async function OtherProfilePage({ params }) {
   const { id } = await params;
-  // const { userId } = await auth();
 
   const queryUser = await db.query(
     `SELECT * FROM w12_app_users WHERE id = $1`,
@@ -69,12 +67,12 @@ export default async function otherProfilePage({ params }) {
           <ProfileBioCard
             username={userName}
             locations={locationArray}
-            dob={1}
+            age={age}
             gender={userGender}
             bio={userBio}
           />
 
-          <ProfileSports username={userName} />
+          <OtherProfileSports username={userName} id={id} />
         </div>
       </main>
 
