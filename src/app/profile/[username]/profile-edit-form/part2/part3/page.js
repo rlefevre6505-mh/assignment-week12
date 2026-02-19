@@ -101,8 +101,8 @@ export default async function ProfileEditFormPage3({ params }) {
       }
     }
 
-    // revalidatePath(`/profile/${username}/profile-edit-form/part2/part3`);
-    // redirect(`/feed/${username}`);
+    revalidatePath(`/profile/${username}/profile-edit-form/part2/part3`);
+    redirect(`/feed/${username}`);
   }
 
   return (
