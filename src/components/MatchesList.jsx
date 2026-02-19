@@ -16,7 +16,7 @@ export default function MatchesList({ matches }) {
       {matches.map((match) => (
         <Link
           key={match.id}
-          href={`${match.id}/profile`}
+          href={`/${match.id}/profile`}
           className={matchesListStyles.matchCard}
         >
           {/* <div className={matchesListStyles.matchUserBio}> */}
