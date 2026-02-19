@@ -1,7 +1,7 @@
 .main_section {
-  background-color: #faf6e1;
+  background-color: var(--colour-accent);
   min-height: 100vh;
-  color: #056530bf;
+  color: var(--colour-primary-light);
   text-align: center;
   padding: 1.5rem;
 }
@@ -28,7 +28,7 @@
 }
 
 .input {
-  background-color: white;
+  background-color: var(--colour-white);
   height: 32px;
   border-radius: 25px;
   width: 80%;
@@ -41,19 +41,19 @@
 }
 
 .button {
-  background-color: #056530;
+  background-color: var(--colour-primary);
   width: 120px;
   height: 40px;
-  color: #faf6e1;
+  color: var(--colour-accent);
   border-radius: 8px;
   align-self: center;
 }
 
 .button:hover,
 .button:focus {
-  background-color: #faf6e1;
-  color: #056530;
-  border: #056530 solid 3px;
+  background-color: var(--colour-accent);
+  color: var(--colour-primary);
+  border: var(--colour-primary) solid 3px;
 }
 
 .input:hover,

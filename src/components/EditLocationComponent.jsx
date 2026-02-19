@@ -42,7 +42,7 @@ export default function LocationComponent({ userid, locations }) {
       ];
       SaveLocations(locationData);
     }
-    redirect(`profile/${userid}/profile-edit-form/part2/part3`);
+    redirect(`/profile/${username}/profile-edit-form/part2/part3`);
   };
 
   //clear search

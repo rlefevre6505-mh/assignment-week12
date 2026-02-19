@@ -1,6 +1,7 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import EditLocationComponent from "@/components/EditLocationComponent";
 import { db } from "@/utils/dbConnection";
+import { Protect } from "@clerk/nextjs";
 
 export default async function profileEditFormPage2() {
   const { userId } = await auth();
@@ -13,6 +14,7 @@ export default async function profileEditFormPage2() {
     [userId],
   );
   const user = queryUser.rows[0].id;
+  console.log(user);
 
   // const currentLocation = await db.query(
   //   `SELECT id FROM w12_app_users JOIN w12_user_locations ON w12_user_locations.user_id = w12_app_users.id
@@ -31,11 +33,16 @@ export default async function profileEditFormPage2() {
     //   <button type="submit">Submit</button>
     // </form>
     <>
-      <EditLocationComponent
-        userid={user}
-        locations={queryLocations.rows}
-        key={queryLocations.rows.id}
-      />
+      {" "}
+      <Protect
+        fallback={<p>Users that are not signed in cannot view this page.</p>}
+      >
+        <EditLocationComponent
+          userid={user}
+          locations={queryLocations.rows}
+          key={queryLocations.rows.id}
+        />{" "}
+      </Protect>
     </>
   );
 }
