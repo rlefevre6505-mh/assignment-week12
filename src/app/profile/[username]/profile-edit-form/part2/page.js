@@ -28,14 +28,12 @@ export default async function profileEditFormPage2() {
     // </form>
     <>
       {" "}
-      
-        <LocationComponent
-          userid={user}
-          locations={queryLocations.rows}
-          key={queryLocations.rows.id}
-          route={"edit"}
-        />{" "}
-      
+      <LocationComponent
+        userid={user}
+        locations={queryLocations.rows}
+        key={queryLocations.rows.id}
+        route={"edit"}
+      />{" "}
     </>
   );
 }

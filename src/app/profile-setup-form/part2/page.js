@@ -16,14 +16,12 @@ export default async function profileSetupFormPageCont() {
 
   return (
     <>
-      
-        <LocationComponent
-          userid={user}
-          locations={queryLocations.rows}
-          key={queryLocations.rows.id}
-          route={"new"}
-        />{" "}
-      
+      <LocationComponent
+        userid={user}
+        locations={queryLocations.rows}
+        key={queryLocations.rows.id}
+        route={"new"}
+      />{" "}
     </>
   );
 }

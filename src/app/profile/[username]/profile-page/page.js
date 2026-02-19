@@ -65,22 +65,22 @@ export default async function profilePage({ params }) {
           </Header>
         </header>
 
-        <main className={profilePageStyles.mainSection}>
-          <div className={profilePageStyles.profileLayout}>
-            <Link href={`/profile/${userId}/profile-edit-form`}>
-              Edit Profile
-            </Link>
-            <ProfileBioCard
-              username={userName}
-              locations={locationArray}
-              age={age}
-              gender={userGender}
-              bio={userBio}
-            />
+      <main className={profilePageStyles.mainSection}>
+        <div className={profilePageStyles.profileLayout}>
+          <Link href={`/profile/${userId}/profile-edit-form`}>
+            Edit Profile
+          </Link>
+          <ProfileBioCard
+            username={userName}
+            locations={locationArray}
+            age={age}
+            gender={userGender}
+            bio={userBio}
+          />
 
-            <ProfileSports username={username} />
-          </div>
-        </main>
+          <ProfileSports username={username} />
+        </div>
+      </main>
 
         <Footer />
       
