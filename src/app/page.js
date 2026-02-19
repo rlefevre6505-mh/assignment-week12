@@ -13,72 +13,77 @@ export default async function Home() {
   // Default screen name if not logged in or not found in DB
   let screenName = "Guest";
 
-  if (userId) {
-    const result = await db.query(
-      `SELECT screen_name FROM w12_app_users WHERE clerk_id = $1`,
-      [userId],
-    );
-    const screenName = result.rows[0]?.screen_name ?? "User";
+  const screenName = result.rows[0]?.screen_name ?? "User"}
 
     return (
       <>
-        {/* INTRO SECTION */}
-        <section className={homepageStyles.introSection}>
-          {/* If user is logged in - show header */}
+      {/* INTRO SECTION */}
+      <section className={homepageStyles.introSection}>
+      {/* If user is logged in - show header */}        
+          
+            {/* Header */}
+            <header className={homepageStyles.header}>
+              <h1 className={homepageStyles.appTitle}>
+                Kickabout
+              </h1>
 
-          {/* Header */}
-          <header className={homepageStyles.header}>
-            <h1 className={homepageStyles.appTitle}>Kickabout</h1>
+              {/* If logged in -> welcome message to user & sign out button*/}
+              {userId && (
+              
+                <div className={homepageStyles.SignOutContainer}>
+                  {/* <div className={homepageStyles.clerkLinks}> */}
+                    <SignOutButton>
+                      <button className={homepageStyles.SignOutButton}>Sign Out</button>
+                    </SignOutButton>
+                    
+                  {/* </div> */}
+                </div>)}
+            </header>
 
-            {/* If logged in -> welcome message to user & sign out button*/}
-            {typeof userId === "string" && (
-              <div className={homepageStyles.SignOutContainer}>
-                {/* <div className={homepageStyles.clerkLinks}> */}
-                <SignOutButton>
-                  <button className={homepageStyles.SignOutButton}>
-                    Sign Out
-                  </button>
-                </SignOutButton>
-                {/* </div> */}
-              </div>
-            )}
-          </header>
+            
 
-          {/* If user logged out -> sign in/up buttons */}
-          {typeof userId !== "string" ? (
-            <>
-              <h2 className={homepageStyles.h2}>
-                It&apos;s hard being a beginner.
-              </h2>
+              {/* If user logged out -> sign in/up buttons */}
+              {!userId ? (
+                <>
+                  <h2 className={homepageStyles.h2}>
+                    It&apos;s hard being a beginner.
+                  </h2>
 
-              <h3 className={homepageStyles.h3}>
-                Take the pressure off and make friends with Kickabout
-              </h3>
+                  <h3 className={homepageStyles.h3}>
+                    Take the pressure off and make friends with Kickabout
+                  </h3>
 
-              <div className={homepageStyles.clerkLinks}>
-                <SignUpButton />
-                <SignInButton />
-              </div>
-            </>
-          ) : (
-            // If user logged in -> view your matches button/sign out
-            <>
-              <h2 className={homepageStyles.h2}>{`Welcome ${screenName}!`}</h2>
+                  <div className={homepageStyles.clerkLinks}>
+                    <div className={homepageStyles.signUpLink}>
+                    <SignUpButton />
+                    </div>
+                    <div className={homepageStyles.signInLink}>
+                    <SignInButton/>
+                    </div>
+                  </div>
+                </>
 
-              <h3 className={homepageStyles.h3}>
-                Ready to find some friends to play with?
-              </h3>
+              ) : (
 
-              {/* Link to matches */}
-              <Link
-                href={`/feed/${screenName}`}
-                className={homepageStyles.button}
-              >
-                <div>View your matches</div>
-              </Link>
-            </>
-          )}
-        </section>
+                // If user logged in -> view your matches button/sign out
+                <>
+                  <h2 className={homepageStyles.h2}>
+                    {`Welcome ${screenName}!`}
+                  </h2>
+
+                  <h3 className={homepageStyles.h3}>
+                    Ready to find some friends to play with?
+                  </h3>
+
+                  {/* Link to matches */}
+                  <Link 
+                    href={`/feed/${screenName}`} 
+                    className={homepageStyles.button}>
+                    <div>View your matches</div>
+                  </Link>
+                </>
+              )}
+            </section>
 
         {/* Rest of homepage always visible */}
         {/* ABOUT SECTION */}
@@ -89,12 +94,12 @@ export default async function Home() {
             className={homepageStyles.footballImage}
           />
           <p className={homepageStyles.aboutText}>
-            Ever wanted to try a new hobby, but don’t know where to start? We
-            know it can be difficult to try something new - especially when that
-            means joining an established club or team, often with the
-            requirement to commit to a set schedule That’s why we created
-            Kickabout - so you can find like-minded people in your area who want
-            to try the same activities as you at a beginner level. No pressure.
+            Ever wanted to try a new hobby, but don’t know where to start? <br/>
+            <br/>
+            We know it can be difficult to try something new - especially when that means joining an established club or team, often with the requirement to commit to a set schedule <br/>
+            <br/>
+            That’s why we created Kickabout - so you can find like-minded people in your area who want to try the same activities as you at a beginner level. No pressure. <br/>
+              <br/>
             No competition. Just fun!
           </p>
         </section>
@@ -107,24 +112,24 @@ export default async function Home() {
           <div className={homepageStyles.howItWorksCards}>
             <div className={homepageStyles.card}>
               <h3 className={homepageStyles.cardTitle}>01 Create a profile</h3>
-              <p className={homepageStyles.cardText}>Explanation for card 1</p>
+              <p className={homepageStyles.cardText}>Tell us where you are and what sports you'd like to get involved in. You can also share what level you are at with each sport for other players to know how new you are.</p>
             </div>
 
             <div className={homepageStyles.card}>
               <h3 className={homepageStyles.cardTitle}>02 Get your matches</h3>
-              <p className={homepageStyles.cardText}>Explanation for card 2</p>
+              <p className={homepageStyles.cardText}>Once you've set up your profile, we will match you with all the other players in your area who want to play the same sports as you - you'll be able to see all of your matches appear in your feed, and you can filter this by sport</p>
             </div>
 
             <div className={homepageStyles.card}>
               <h3 className={homepageStyles.cardTitle}>03 Arrange a meet-up</h3>
-              <p className={homepageStyles.cardText}>Explanation for card 3</p>
+              <p className={homepageStyles.cardText}>That's our job done! Use the app to connect with any of your matches and set up a time and place to play your new sport.</p>
             </div>
 
             <div className={homepageStyles.card}>
               <h3 className={homepageStyles.cardTitle}>
                 04 Play and have fun!
               </h3>
-              <p className={homepageStyles.cardText}>Explanation for card 4</p>
+              <p className={homepageStyles.cardText}>No explanation needed - have a good time!</p>
             </div>
           </div>
         </section>
@@ -134,81 +139,79 @@ export default async function Home() {
           <Footer />
         </section>
       </>
-    );
-  }
-}
-// } else {
-//   return (
-//     <>
-//       <section className={homepageStyles.introSection}>
-//         <h1 className={homepageStyles.appTitle}>Kickabout</h1>
-//         <h2 className={homepageStyles.h2}>
-//           It&apos;s hard being a beginner.
-//         </h2>
-//         <h3 className={homepageStyles.h3}>
-//           Take the pressure off and make friends with Kickabout
-//         </h3>
-//         <div className={homepageStyles.clerkLinks}>
-//           <Link href="/sign-up" className={homepageStyles.signUpLink}>
-//             sign up
-//           </Link>
-//           <Link href="/sign-in" className={homepageStyles.signInLink}>
-//             sign in
-//           </Link>
-//         </div>
-//       </section>
+    )};
+  // } else {
+  //   return (
+  //     <>
+  //       <section className={homepageStyles.introSection}>
+  //         <h1 className={homepageStyles.appTitle}>Kickabout</h1>
+  //         <h2 className={homepageStyles.h2}>
+  //           It&apos;s hard being a beginner.
+  //         </h2>
+  //         <h3 className={homepageStyles.h3}>
+  //           Take the pressure off and make friends with Kickabout
+  //         </h3>
+  //         <div className={homepageStyles.clerkLinks}>
+  //           <Link href="/sign-up" className={homepageStyles.signUpLink}>
+  //             sign up
+  //           </Link>
+  //           <Link href="/sign-in" className={homepageStyles.signInLink}>
+  //             sign in
+  //           </Link>
+  //         </div>
+  //       </section>
 
-//       <section className={homepageStyles.aboutSection}>
-//         {/* TODO: Get this image working! */}
-//         <img
-//           src="/images/football.png"
-//           alt="animation of people playing football together"
-//           className={homepageStyles.footballImage}
-//         />
-//         <p className={homepageStyles.aboutText}>
-//           Ever wanted to try a new hobby, but don’t know where to start? We
-//           know it can be difficult to try something new - especially when that
-//           means joining an established club or team, often with the
-//           requirement to commit to a set schedule That’s why we created
-//           Kickabout - so you can find like-minded people in your area who want
-//           to try the same activities as you at a beginner level. No pressure.
-//           No competition. Just fun!
-//         </p>
-//       </section>
+  //       <section className={homepageStyles.aboutSection}>
+  //         {/* TODO: Get this image working! */}
+  //         <img
+  //           src="/images/football.png"
+  //           alt="animation of people playing football together"
+  //           className={homepageStyles.footballImage}
+  //         />
+  //         <p className={homepageStyles.aboutText}>
+  //           Ever wanted to try a new hobby, but don’t know where to start? We
+  //           know it can be difficult to try something new - especially when that
+  //           means joining an established club or team, often with the
+  //           requirement to commit to a set schedule That’s why we created
+  //           Kickabout - so you can find like-minded people in your area who want
+  //           to try the same activities as you at a beginner level. No pressure.
+  //           No competition. Just fun!
+  //         </p>
+  //       </section>
 
-//       {/* TODO: Add text into these cards */}
-//       <section className={homepageStyles.howItWorksSection}>
-//         <h2 className={homepageStyles.howItWorksTitle}>How it works</h2>
+  //       {/* TODO: Add text into these cards */}
+  //       <section className={homepageStyles.howItWorksSection}>
+  //         <h2 className={homepageStyles.howItWorksTitle}>How it works</h2>
 
-//         <div className={homepageStyles.howItWorksCards}>
-//           <div className={homepageStyles.card}>
-//             <h3 className={homepageStyles.cardTitle}>01 Create a profile</h3>
-//             <p className={homepageStyles.cardText}>Explanation for card 1</p>
-//           </div>
+  //         <div className={homepageStyles.howItWorksCards}>
+  //           <div className={homepageStyles.card}>
+  //             <h3 className={homepageStyles.cardTitle}>01 Create a profile</h3>
+  //             <p className={homepageStyles.cardText}>Explanation for card 1</p>
+  //           </div>
 
-//           <div className={homepageStyles.card}>
-//             <h3 className={homepageStyles.cardTitle}>02 Get your matches</h3>
-//             <p className={homepageStyles.cardText}>Explanation for card 2</p>
-//           </div>
+  //           <div className={homepageStyles.card}>
+  //             <h3 className={homepageStyles.cardTitle}>02 Get your matches</h3>
+  //             <p className={homepageStyles.cardText}>Explanation for card 2</p>
+  //           </div>
 
-//           <div className={homepageStyles.card}>
-//             <h3 className={homepageStyles.cardTitle}>03 Arrange a meet-up</h3>
-//             <p className={homepageStyles.cardText}>Explanation for card 3</p>
-//           </div>
+  //           <div className={homepageStyles.card}>
+  //             <h3 className={homepageStyles.cardTitle}>03 Arrange a meet-up</h3>
+  //             <p className={homepageStyles.cardText}>Explanation for card 3</p>
+  //           </div>
 
-//           <div className={homepageStyles.card}>
-//             <h3 className={homepageStyles.cardTitle}>
-//               04 Play and have fun!
-//             </h3>
-//             <p className={homepageStyles.cardText}>Explanation for card 4</p>
-//           </div>
-//         </div>
-//       </section>
+  //           <div className={homepageStyles.card}>
+  //             <h3 className={homepageStyles.cardTitle}>
+  //               04 Play and have fun!
+  //             </h3>
+  //             <p className={homepageStyles.cardText}>Explanation for card 4</p>
+  //           </div>
+  //         </div>
+  //       </section>
 
-//       <section className={homepageStyles.homepageFooter}>
-//         <Footer />
-//       </section>
-//     </>
+  //       <section className={homepageStyles.homepageFooter}>
+  //         <Footer />
+  //       </section>
+  //     </>
 //     );
 //   }
 //

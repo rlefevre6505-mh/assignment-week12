@@ -42,7 +42,14 @@ export default function MatchesList({ matches }) {
                     (s) => s.id === sport.sport_id,
                   );
 
-                  if (!sportData) return null;
+    return(
+        <>
+        <section className={matchesListStyles.matchesContainer}>
+            {matches.map((match)=>(
+                <Link
+                    key={match.id}
+                    href={`/profile/${match.id}/profile-page`}
+                    className={matchesListStyles.matchCard}>
 
                   return (
                     <SportCard
