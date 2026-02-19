@@ -46,6 +46,13 @@
     transition: 0.2s ease;
 }
 
+.SignOutButton:hover{
+    background-color: var(--colour-accent);
+  color: var(--colour-primary-light);
+  border: var(--colour-primary-light) solid 3px;
+  transform: translateY(-4px);
+}
+
 .appTitle{
     font-size: 3rem;
     font-weight: 700;
@@ -71,6 +78,10 @@
     transition: 0.2s ease;
     background-color: var(--colour-accent);
     color: var(--colour-primary)
+}
+
+.button:hover{
+    transform: translateY(-4px);
 }
 
 /* AUTH BUTTONS */
@@ -116,6 +127,8 @@
 .aboutText{
     color: var(--colour-primary);
     line-height: 1.7;
+    font-size: 1rem;
+    padding-right: 3rem;;
 }
 
 /* HOW IT WORKS SECTION */
@@ -128,12 +141,19 @@
 
 .howItWorksTitle{
     margin-bottom: var(--spacing-md);
+    font-size: 2rem;
+    color: var(--colour-white);
 }
 
+/* Desktop */
 .howItWorksCards{
     display:grid;
-    grid-template-columns: repeat (4 1fr);
-    gap: var(--spacing-sm)
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    justify-items: stretch;
+    align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .card{
@@ -143,17 +163,24 @@
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-soft);
     transition: 0.2s ease;
+    /* max-width: 500px; */
+    height: 275px;
 }
 
 .card:hover{
     transform: translateY(-4px);
 }
 
-.cardTitle{
 
+.cardTitle{
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    
 }
 
 .cardText{
+    padding: 0.5rem;
     
 }
 
@@ -187,7 +214,10 @@
     .howItWorksCards{
         display: flex;
         overflow-x: auto;
+        gap: var(--spacing-md);
         scroll-snap-type: x mandatory;
+        padding-bottom: 1rem;
+        -webkit-overflow-scrolling: touch;
     }
 
     .card{
@@ -197,3 +227,24 @@
     }
 }
 
+.homepageFooter{
+    width: 100%;
+    background-color: var(--colour-accent);
+}
+
+/* Scroll bar */
+.howItWorksCards::-webkit-scrollbar{
+    height: 10px;
+
+}
+
+.howItWorksCards::-webkit-scrollbar-track{
+    background: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.howItWorksCards::-webkit-scrollbar-thumb{
+    background-color: var(--colour-accent);
+    border-radius: 5px;
+}

@@ -1,7 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import LocationComponent from "@/components/LocationComponent";
 import { db } from "@/utils/dbConnection";
-import { Protect } from "@clerk/nextjs";
 
 export default async function profileEditFormPage2() {
   const { userId } = await auth();
