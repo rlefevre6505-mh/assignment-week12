@@ -22,7 +22,7 @@ export default function MatchesList({matches}){
             {matches.map((match)=>(
                 <Link
                     key={match.id}
-                    href={`/profile/${match.screen_name}/profile-page`}
+                    href={`/profile/${match.id}/profile-page`}
                     className={matchesListStyles.matchCard}>
 
                     {/* <div className={matchesListStyles.matchUserBio}> */}
