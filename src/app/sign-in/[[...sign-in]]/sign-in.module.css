@@ -7,6 +7,11 @@
   position: relative;
 }
 
+.nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .heading {
   font-size: 1.3rem;
   font-weight: 700;
@@ -66,13 +71,6 @@
 .input:hover,
 .input:focus {
   outline: black solid 3px;
-}
-
-.signUpLink {
-  padding: 0.6rem 1.5rem;
-  border-radius: 999px;
-  font-weight: 500;
-  transition: 0.2s ease;
 }
 
 @media (min-width: 425px) {

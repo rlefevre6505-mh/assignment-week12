@@ -84,6 +84,7 @@ export default async function ProfileSetupFormPage() {
           <input
             type="text"
             name="screen_name"
+            id="screen_name"
             minLength={5}
             maxLength={30}
             required
@@ -97,6 +98,7 @@ export default async function ProfileSetupFormPage() {
           <input
             type="date"
             name="dob"
+            id="dob"
             required
             className={setupFormStyles.input}
           />
@@ -106,6 +108,7 @@ export default async function ProfileSetupFormPage() {
           </label>
           <select
             name="gender"
+            id="gender"
             defaultValue="--Please choose an option--"
             selected
             required
@@ -124,6 +127,7 @@ export default async function ProfileSetupFormPage() {
           </label>
           <textarea
             name="bio"
+            id="bio"
             rows="5"
             cols="33"
             className={setupFormStyles.input}

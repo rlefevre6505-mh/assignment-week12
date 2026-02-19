@@ -62,14 +62,18 @@ export default function LocationComponent({ userid, locations }) {
       <h1 className={setupformStyles.heading}>Where are you based?</h1>
       <h2 className={setupformStyles.subheading}>
         Please type in the name of your home town/city, a list of possible
-        choices will appear. When you see it, click it!.{" "}
+        choices will appear. When you see it, click it!{" "}
       </h2>
       <div className={setupformStyles.form}>
-        <label className={setupformStyles.form}>Search</label>
+        <label for="locationSearch" className={setupformStyles.form}>
+          Search
+        </label>
         <p>{filteredLocations.length}</p>
         <input
           tabIndex={0}
           type="text"
+          name="locationSearch"
+          id="locationSearch"
           onChange={(e) => handleChange(e)}
           onKeyPress={(e) => handleReturnKey(e)}
           className={setupformStyles.input}
@@ -81,7 +85,7 @@ export default function LocationComponent({ userid, locations }) {
                 key={location.id}
                 id={location.id}
                 onClick={(e) => handleSubmit(e)}
-                className={setupformStyles.button}
+                className={setupformStyles.searchResult}
               >
                 {location.town_name}
               </p>

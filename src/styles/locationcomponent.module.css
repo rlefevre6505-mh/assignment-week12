@@ -49,8 +49,20 @@
   align-self: center;
 }
 
+.searchResult {
+  background-color: var(--colour-primary);
+  color: var(--colour-accent);
+  width: 180px;
+  height: 27px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  text-align: center;
+}
+
 .button:hover,
-.button:focus {
+.button:focus,
+.searchResult:hover,
+.searchResult:focus {
   background-color: var(--colour-accent);
   color: var(--colour-primary);
   border: var(--colour-primary) solid 3px;

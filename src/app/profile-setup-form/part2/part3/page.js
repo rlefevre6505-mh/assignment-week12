@@ -84,7 +84,12 @@ export default async function ProfileSetupFormPage() {
           <label htmlFor="sport_1" className={setupFormStyles.form_label}>
             Choose a sport
           </label>
-          <select name="sport_1" required className={setupFormStyles.input}>
+          <select
+            name="sport_1"
+            id="sport_1"
+            required
+            className={setupFormStyles.input}
+          >
             <option>--Please choose an option--</option>
             {sports.map((sport, i) => {
               return (
@@ -97,7 +102,12 @@ export default async function ProfileSetupFormPage() {
           <label htmlFor="level_1" className={setupFormStyles.form_label}>
             Choose your level
           </label>
-          <select name="level_1" required className={setupFormStyles.input}>
+          <select
+            name="level_1"
+            id="level_1"
+            required
+            className={setupFormStyles.input}
+          >
             <option>--Please choose an option--</option>
             {levels.map((level, i) => {
               return (
@@ -110,7 +120,7 @@ export default async function ProfileSetupFormPage() {
           <label htmlFor="sport_2" className={setupFormStyles.form_label}>
             Choose a sport
           </label>
-          <select name="sport_2" className={setupFormStyles.input}>
+          <select name="sport_2" id="sport_2" className={setupFormStyles.input}>
             <option>--Please choose an option--</option>
             {sports.map((sport, i) => {
               return (
@@ -123,7 +133,7 @@ export default async function ProfileSetupFormPage() {
           <label htmlFor="level_2" className={setupFormStyles.form_label}>
             Choose your level
           </label>
-          <select name="level_2" className={setupFormStyles.input}>
+          <select name="level_2" id="level_2" className={setupFormStyles.input}>
             <option>--Please choose an option--</option>
             {levels.map((level, i) => {
               return (
@@ -136,7 +146,7 @@ export default async function ProfileSetupFormPage() {
           <label htmlFor="sport_3" className={setupFormStyles.form_label}>
             Choose a sport
           </label>
-          <select name="sport_3" className={setupFormStyles.input}>
+          <select name="sport_3" id="sport_3" className={setupFormStyles.input}>
             <option>--Please choose an option--</option>
             {sports.map((sport, i) => {
               return (
@@ -149,7 +159,7 @@ export default async function ProfileSetupFormPage() {
           <label htmlFor="level_3" className={setupFormStyles.form_label}>
             Choose your level
           </label>
-          <select name="level_3" className={setupFormStyles.input}>
+          <select name="level_3" id="level_3" className={setupFormStyles.input}>
             <option>--Please choose an option--</option>
             {levels.map((level, i) => {
               return (
