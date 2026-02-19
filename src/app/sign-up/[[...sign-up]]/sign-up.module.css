@@ -68,6 +68,11 @@
   outline: black solid 3px;
 }
 
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (min-width: 425px) {
   .main {
     padding: 2rem 4rem;
