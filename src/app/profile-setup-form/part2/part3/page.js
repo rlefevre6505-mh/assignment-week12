@@ -70,9 +70,7 @@ export default async function ProfileSetupFormPage() {
   }
 
   return (
-    <Protect
-      fallback={<p>Users that are not signed in cannot view this page.</p>}
-    >
+    
       <main className={setupFormStyles.main_section}>
         <h1 className={setupFormStyles.heading}>Nearly there...</h1>
         <h2 className={setupFormStyles.subheading}>
@@ -173,7 +171,7 @@ export default async function ProfileSetupFormPage() {
           </button>
         </form>
       </main>
-    </Protect>
+    
   );
 }
 // needed for w12_user_sports: user_id, sport_id, sport_level_id

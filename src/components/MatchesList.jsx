@@ -7,19 +7,19 @@ import { levelMap } from "@/data/levels";
 import { sportsIconData } from "@/data/sports";
 
 export default function MatchesList({ matches }) {
-  // TODO: add .map logic to show all cards for users who 'match' within the matches Container
+
 
   if (!matches || matches.length === 0) {
     return <p>No matches yet!</p>;
   }
 
   return (
-    <>
+    
       <section className={matchesListStyles.matchesContainer}>
         {matches.map((match) => (
           <Link
             key={match.id}
-            href={`/${match.id}/profile`}
+            href={`/profile/${match.id}/profile-page`}
             className={matchesListStyles.matchCard}
           >
             {/* <div className={matchesListStyles.matchUserBio}> */}
@@ -28,7 +28,7 @@ export default function MatchesList({ matches }) {
               alt={`${match.screen_name}'s profile`}
               className={matchesListStyles.matchUserPhoto}
             />
-            {/* </div> */}
+            
 
             <div className={matchesListStyles.matchUserContent}>
               <h2 className={matchesListStyles.username}>
@@ -43,15 +43,7 @@ export default function MatchesList({ matches }) {
                   );
 
     return(
-        <>
-        <section className={matchesListStyles.matchesContainer}>
-            {matches.map((match)=>(
-                <Link
-                    key={match.id}
-                    href={`/profile/${match.id}/profile-page`}
-                    className={matchesListStyles.matchCard}>
-
-                  return (
+        
                     <SportCard
                       key={sport.sport_id}
                       name={sportData.name}
@@ -66,6 +58,6 @@ export default function MatchesList({ matches }) {
           </Link>
         ))}
       </section>
-    </>
+    
   );
 }

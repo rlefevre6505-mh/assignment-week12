@@ -108,9 +108,7 @@ export default async function ProfileEditFormPage3({ params }) {
   return (
     <>
       {" "}
-      <Protect
-        fallback={<p>Users that are not signed in cannot view this page.</p>}
-      >
+      
         <main className={setupFormStyles.main_section}>
           <h1 className={setupFormStyles.heading}>Edit Profile</h1>
           <h2 className={setupFormStyles.subheading}>
@@ -229,7 +227,7 @@ export default async function ProfileEditFormPage3({ params }) {
             </button>
           </form>
         </main>
-      </Protect>
+      
     </>
   );
 }

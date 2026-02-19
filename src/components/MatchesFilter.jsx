@@ -4,6 +4,7 @@ import {useState} from "react";
 import MatchesList from "./MatchesList"
 import { sportsIconData } from "@/data/sports";
 import MatchListStyles from "@/styles/matchesList.module.css"
+import { FaSort, FaFilter, FaGripLinesVertical } from "react-icons/fa";
 
 export default function MatchesFilter({matches, userSports}){
 
@@ -33,41 +34,67 @@ export default function MatchesFilter({matches, userSports}){
 
     return(
         <>
-        {/* Filter Dropdown */}
-        <select
-            onChange={(e)=>
-                setSelectedSport(
-                    e.target.value ? Number(e.target.value):null
-                )
-            }
-            >
-                <option value="">All Sports</option>
+        
 
-                {userSports?.map((sport) => {
-                const sportData = sportsIconData.find(
-                    (s) => s.id === sport.sport_id
-                );
+        {/* BUTTONS
+        
+            <button className={MatchListStyles.sortButton}>
+              <FaSort className={MatchListStyles.icon} />
+              <span className={MatchListStyles.label}>Sort</span>
+            </button>
 
-                if (!sportData) return null;
+            <FaGripLinesVertical className={MatchListStyles.lines} />
 
-                return (
-                    <option
-                    key={sport.sport_id}
-                    value={sport.sport_id}
-                    >
-                    {sportData.name}
-                    </option>
-                );
-                })}
-            </select>
+            <button className={MatchListStyles.filterButton}>
+              <FaFilter className={MatchListStyles.icon} />
+              <span className={MatchListStyles.label}>Filter</span>
+            </button> */}
+          
+
+          {/* DROPDOWNS */}
+          {/* Filter Dropdown */}
+          <section className={MatchListStyles.controls}>
+            <div className={MatchListStyles.dropdownSelectWrapper}>
+                <FaFilter className={MatchListStyles.icon} />
+                <select
+                    className={MatchListStyles.dropdownSelect}
+                    onChange={(e)=>
+                    setSelectedSport(e.target.value ? Number(e.target.value):null
+                    )}>
+                
+                    <option value="">All Sports</option>
+
+                    {userSports?.map((sport) => {
+                        const sportData = sportsIconData.find(
+                        (s) => s.id === sport.sport_id
+                        );
+
+                        if (!sportData) return null;
+
+                        return (
+                            <option
+                                key={sport.sport_id}
+                                value={sport.sport_id}>
+                                    {sportData.name}
+                            </option>
+                        );
+                        })}
+                </select>
+            </div>
 
             {/* Sort button */}
+            <div className={MatchListStyles.dropdownSelectWrapper}>
+            <FaSort className={MatchListStyles.icon} />
             <select 
+                className={MatchListStyles.dropdownSelect}
                 onChange = {(e)=> setSortBy(e.target.value)}>
+
                     <option value="">Sort by</option>
                     <option value="name">Name (A-Z)</option>
-                    <option value="">Name (Z-A)</option>
+                    <option value="name-desc">Name (Z-A)</option>
                 </select>
+            </div>
+        </section>
             
 
 

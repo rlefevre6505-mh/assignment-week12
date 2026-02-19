@@ -51,9 +51,7 @@ export default async function ProfileEditFormPage({ params }) {
     redirect(`/profile/${username}/profile-edit-form/part2`);
   }
   return (
-    <Protect
-      fallback={<p>Users that are not signed in cannot view this page.</p>}
-    >
+    
       <main className={setupFormStyles.main_section}>
         <h1 className={setupFormStyles.heading}>Edit Profile</h1>
         <h2 className={setupFormStyles.subheading}>Change your details here</h2>
