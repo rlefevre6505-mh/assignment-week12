@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import navBarStyles from "@/styles/navBar.module.css";
 import Link from "next/link";
@@ -8,7 +8,6 @@ import { usePathname, useParams } from "next/navigation";
 // ! Update the link paths
 
 export default function NavBar() {
-
   const pathname = usePathname();
   const params = useParams();
   const username = params?.username;
@@ -18,38 +17,41 @@ export default function NavBar() {
   return (
     <nav className={navBarStyles.nav}>
       {/* render both text and icons, CSS will decide what is visible */}
-      <Link 
-          href="#" 
-          className={`${navBarStyles.navLink}
+      <Link
+        href="#"
+        className={`${navBarStyles.navLink}
 
           // TODO: update these file paths when ready 
-          ${pathname === "/chats" ? navBarStyles.active : ""}`}>
-          <FaComments className={navBarStyles.icon} />
-          <span className={navBarStyles.label}>Chats</span>
+          ${pathname === "/chats" ? navBarStyles.active : ""}`}
+      >
+        <FaComments className={navBarStyles.icon} aria-label="Chats" />
+        <span className={navBarStyles.label}>Chats</span>
       </Link>
 
-      <Link 
-          href={`/feed/${username}`} 
-          className={`${navBarStyles.navLink}
-          ${pathname.startsWith("/feed") ? navBarStyles.active : ""}`}>
-
-          <FaUserFriends className={navBarStyles.icon} />
-          <span className={navBarStyles.label}>Matches</span>
+      <Link
+        href={`/feed/${username}`}
+        className={`${navBarStyles.navLink}
+          ${pathname.startsWith("/feed") ? navBarStyles.active : ""}`}
+      >
+        <FaUserFriends className={navBarStyles.icon} aria-label="Matches" />
+        <span className={navBarStyles.label}>Matches</span>
       </Link>
 
-      <Link 
-          href="#" 
-          className={`${navBarStyles.navLink}
-          ${pathname === "/map" ? navBarStyles.active : ""}`}>
-          <FaMap className={navBarStyles.icon} />
-          <span className={navBarStyles.label}>Map</span>
+      <Link
+        href="#"
+        className={`${navBarStyles.navLink}
+          ${pathname === "/map" ? navBarStyles.active : ""}`}
+      >
+        <FaMap className={navBarStyles.icon} aria-label="Map" />
+        <span className={navBarStyles.label}>Map</span>
       </Link>
 
-      <Link 
-          href={`/profile/${username}/profile-page`} 
-          className={`${navBarStyles.navLink}
-          ${pathname.startsWith("/profile") ? navBarStyles.active : ""}`}>
-        <FaUser className={navBarStyles.icon} />
+      <Link
+        href={`/profile/${username}/profile-page`}
+        className={`${navBarStyles.navLink}
+          ${pathname.startsWith("/profile") ? navBarStyles.active : ""}`}
+      >
+        <FaUser className={navBarStyles.icon} aria-label="My Profile" />
         <span className={navBarStyles.label}>My Profile</span>
       </Link>
     </nav>
