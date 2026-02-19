@@ -3,7 +3,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { db } from "../../utils/dbConnection";
 import setupFormStyles from "./profile-setup-form.module.css";
-import { Protect } from "@clerk/nextjs";
 
 export default async function ProfileSetupFormPage() {
   // pull clerk id and current date here
@@ -68,73 +67,69 @@ export default async function ProfileSetupFormPage() {
     redirect(`/profile-setup-form/part2`);
   }
   return (
-    <Protect
-      fallback={<p>Users that are not signed in cannot view this page.</p>}
-    >
-      <main className={setupFormStyles.main_section}>
-        <h1 className={setupFormStyles.heading}>Thanks for signing up!</h1>
-        <h2 className={setupFormStyles.subheading}>
-          You&apos;re almost there, we just need a bit more information about
-          you to find your matches
-        </h2>
-        <form action={handleSubmit} className={setupFormStyles.form}>
-          <label htmlFor="screen_name" className={setupFormStyles.form_label}>
-            01 - What name would you like matched users to see?
-          </label>
-          <input
-            type="text"
-            name="screen_name"
-            minLength={5}
-            maxLength={30}
-            required
-            className={setupFormStyles.input}
-          />
+    <main className={setupFormStyles.main_section}>
+      <h1 className={setupFormStyles.heading}>Thanks for signing up!</h1>
+      <h2 className={setupFormStyles.subheading}>
+        You&apos;re almost there, we just need a bit more information about you
+        to find your matches
+      </h2>
+      <form action={handleSubmit} className={setupFormStyles.form}>
+        <label htmlFor="screen_name" className={setupFormStyles.form_label}>
+          01 - What name would you like matched users to see?
+        </label>
+        <input
+          type="text"
+          name="screen_name"
+          minLength={5}
+          maxLength={30}
+          required
+          className={setupFormStyles.input}
+        />
 
-          {/* set over 18s only? restrict to max and min*/}
-          <label htmlFor="dob" className={setupFormStyles.form_label}>
-            02 - Please enter your date of birth:
-          </label>
-          <input
-            type="date"
-            name="dob"
-            required
-            className={setupFormStyles.input}
-          />
+        {/* set over 18s only? restrict to max and min*/}
+        <label htmlFor="dob" className={setupFormStyles.form_label}>
+          02 - Please enter your date of birth:
+        </label>
+        <input
+          type="date"
+          name="dob"
+          required
+          className={setupFormStyles.input}
+        />
 
-          <label htmlFor="gender" className={setupFormStyles.form_label}>
-            03 - Please select your gender:
-          </label>
-          <select
-            name="gender"
-            defaultValue="--Please choose an option--"
-            selected
-            required
-            className={setupFormStyles.input}
-          >
-            <option>--Please choose an option--</option>
-            {/* add options here - needs setting up in DB*/}
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Non-binary">Non-binary</option>
-            <option value="Prefer not to say">Prefer not to say</option>
-          </select>
+        <label htmlFor="gender" className={setupFormStyles.form_label}>
+          03 - Please select your gender:
+        </label>
+        <select
+          name="gender"
+          defaultValue="--Please choose an option--"
+          selected
+          required
+          className={setupFormStyles.input}
+        >
+          <option>--Please choose an option--</option>
+          {/* add options here - needs setting up in DB*/}
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Non-binary">Non-binary</option>
+          <option value="Prefer not to say">Prefer not to say</option>
+        </select>
 
-          <label htmlFor="bio" className={setupFormStyles.form_label}>
-            {`04 - Tell matched users a little about yourself (Optional):`}
-          </label>
-          <textarea
-            name="bio"
-            rows="5"
-            cols="33"
-            className={setupFormStyles.input}
-          ></textarea>
+        <label htmlFor="bio" className={setupFormStyles.form_label}>
+          {`04 - Tell matched users a little about yourself (Optional):`}
+        </label>
+        <textarea
+          name="bio"
+          rows="5"
+          cols="33"
+          className={setupFormStyles.input}
+        ></textarea>
 
-          <button type="submit" className={setupFormStyles.button}>
-            Next
-          </button>
-        </form>
-      </main>
-    </Protect>
+        <button type="submit" className={setupFormStyles.button}>
+          Next
+        </button>
+      </form>
+    </main>
   );
 }
 // needed for w12_app_users: clerk_id, screen_name, dob, gender, current date, bio(optional)

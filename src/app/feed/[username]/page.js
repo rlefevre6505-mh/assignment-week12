@@ -12,13 +12,13 @@ import MatchesFilter from "@/components/MatchesFilter";
 import {redirect} from "next/navigation"
 
 export default async function feedPage() {
+  // logic to identify current user ID fron DB based on Clerk log in
   const { userId } = await auth();
   const queryUser = await db.query(
     `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
   );
   const user = queryUser.rows[0].id;
-  // console.log(userId);
 
   // SINEADS CODE  FOR FILTERING ===
   const userSportsQuery = await db.query(
@@ -136,4 +136,3 @@ export default async function feedPage() {
     // </Protect>
   );
 }
-

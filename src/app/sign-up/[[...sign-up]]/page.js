@@ -41,7 +41,7 @@ export default function SignUpPage() {
               <SignUp.Strategy name="email_code">
                 <Clerk.Field name="code" className={signupStyles.field}>
                   <Clerk.Label>Verification Code</Clerk.Label>
-                  <Clerk.Input placeholder="code" />
+                  <Clerk.Input placeholder="code" className={signupStyles.input}/>
                   <Clerk.FieldError className="field-error" />
                 </Clerk.Field>
                 <SignUp.Action submit>Verify</SignUp.Action>

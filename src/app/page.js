@@ -2,9 +2,8 @@ import Link from "next/link";
 import { db } from "../utils/dbConnection";
 import Footer from "../components/Footer";
 import homepageStyles from "@/app/homepage.module.css";
-import { SignOutButton, SignInButton, SignUpButton} from "@clerk/nextjs";
-import { auth, currentUser } from "@clerk/nextjs/server";
-
+import { SignOutButton, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 export default async function Home() {
   // const queryLocations = await db.query(`SELECT * FROM w12_locations`);
@@ -12,16 +11,10 @@ export default async function Home() {
   const { userId } = await auth();
 
   // Default screen name if not logged in or not found in DB
- let screenName = "Guest"
-  
- if (userId){
-  const result = await db.query(
-    `SELECT screen_name FROM w12_app_users WHERE clerk_id = $1`, [userId]
-  );
+  let screenName = "Guest";
 
   const screenName = result.rows[0]?.screen_name ?? "User"}
 
-  // if (typeof userId === "string") {
     return (
       <>
       {/* INTRO SECTION */}
@@ -222,4 +215,3 @@ export default async function Home() {
 //     );
 //   }
 //
-
