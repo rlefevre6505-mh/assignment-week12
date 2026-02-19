@@ -1,11 +1,10 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
-import EditLocationComponent from "@/components/EditLocationComponent";
+import { auth } from "@clerk/nextjs/server";
+import LocationComponent from "@/components/LocationComponent";
 import { db } from "@/utils/dbConnection";
 import { Protect } from "@clerk/nextjs";
 
 export default async function profileEditFormPage2() {
   const { userId } = await auth();
-  const signInName = await currentUser();
 
   const queryLocations = await db.query(`SELECT * FROM w12_locations`);
   // console.log(await queryLocations.rows);
@@ -22,10 +21,6 @@ export default async function profileEditFormPage2() {
   //   [user],
   // );
 
-  async function handleUpdate() {
-    "use server";
-  }
-
   return (
     // <form action={handleSubmit}>
     //   {/* add location options here - search from options stored in DB*/}
@@ -37,10 +32,11 @@ export default async function profileEditFormPage2() {
       <Protect
         fallback={<p>Users that are not signed in cannot view this page.</p>}
       >
-        <EditLocationComponent
+        <LocationComponent
           userid={user}
           locations={queryLocations.rows}
           key={queryLocations.rows.id}
+          route={"edit"}
         />{" "}
       </Protect>
     </>

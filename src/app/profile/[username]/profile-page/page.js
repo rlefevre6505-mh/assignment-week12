@@ -8,6 +8,7 @@ import ProfileConnections from "@/components/ProfileConnections";
 import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css";
 import { Protect, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default async function profilePage({ params }) {
   const { username } = params;
@@ -34,7 +35,7 @@ export default async function profilePage({ params }) {
 
   //convert to full years
   const age = Math.abs(elapsed.getUTCFullYear() - 1970);
-  console.log("User is " + age + " old ");
+  console.log("User is " + age + " years old ");
 
   //matching location with user
   const queryUserLocations = await db.query(
@@ -69,25 +70,22 @@ export default async function profilePage({ params }) {
 
         <main className={profilePageStyles.mainSection}>
           <div className={profilePageStyles.profileLayout}>
+            <Link href={`/profile/${userId}/profile-edit-form`}>
+              Edit Profile
+            </Link>
             <ProfileBioCard
               username={userName}
               locations={locationArray}
-              dob={1}
+              age={age}
               gender={userGender}
               bio={userBio}
             />
 
-            
-
             <ProfileSports username={username} />
-
-
           </div>
         </main>
 
-
-
-      <Footer />
+        <Footer />
       </Protect>
     </>
   );

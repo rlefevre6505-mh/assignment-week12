@@ -13,6 +13,15 @@ export default async function ProfileEditFormPage({ params }) {
   const data = userInfoQuery.rows[0];
   console.log(username);
 
+  const dateDay = data.dob.getDate();
+  const dateMonth = data.dob.getMonth() + 1;
+  const dateYear = data.dob.getFullYear();
+  // const dateConcat = dateDa;
+  console.log(dateDay);
+  console.log(dateMonth);
+  console.log(dateYear);
+  // console.log(dateConcat);
+
   const user = userInfoQuery.rows[0].id;
   console.log(user);
 

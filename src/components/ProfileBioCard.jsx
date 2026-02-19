@@ -10,6 +10,7 @@ export default function ProfileBioCard({
   gender,
   bio,
 }) {
+  console.log(age);
   return (
     <>
       <section className={profileBioCardStyles.profileBioCardContainer}>
