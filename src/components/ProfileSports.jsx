@@ -8,7 +8,7 @@ import { sportsIconData } from "@/data/sports";
 import {Fragment} from "react"
 import { levelMap } from "@/data/levels";
 import {db} from "@/utils/dbConnection"
-import SportCard from "./SportIcon";
+// import SportIcon from "./SportIcon";
 import { auth } from "@clerk/nextjs/server";
 
 

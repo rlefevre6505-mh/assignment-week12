@@ -11,10 +11,14 @@ export default function MatchesList({ matches }) {
     return <p>No matches yet!</p>;
   }
   console.log(matches);
+
   return (
+    
     <section className={matchesListStyles.matchesContainer}>
       {matches.map((match) => (
-        <div key={match.id}>
+        
+        <div key={`match-${match.id}`}>
+          
           <Link
             href={`/${match.id}/profile`}
             className={matchesListStyles.matchCard}
@@ -33,14 +37,15 @@ export default function MatchesList({ matches }) {
               <p className={matchesListStyles.location}>{match.town_name}</p>
 
               <div className={matchesListStyles.matchUserSports}>
-                {match.sports.map((sport) => {
+                {match.sports.map((sport,index) => {
                   const sportData = sportsIconData.find(
                     (s) => s.id === sport.sport_id,
                   );
                   console.log(sport.sport_id);
+                  if(!sportData) return null;
                   return (
                     <SportIcon
-                      key={sport.sport_id}
+                      key={`${sport.sport_id}-${index}`}
                       name={sportData.name}
                       icon={sportData.icon}
                       level={levelMap[sport.sport_level_id]}

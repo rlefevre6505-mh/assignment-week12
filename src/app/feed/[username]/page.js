@@ -14,6 +14,10 @@ import { redirect } from "next/navigation";
 export default async function feedPage() {
   // logic to identify current user ID fron DB based on Clerk log in
   const { userId } = await auth();
+
+  if (!userId) {
+  redirect("/");
+}
   const queryUser = await db.query(
     `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
@@ -66,10 +70,10 @@ export default async function feedPage() {
 
   const matchSports = sportsQuery.rows;
 
-  const matchesWithSports = matchSports.map((match) => {
+  const matchesWithSports = matches.map((user) => {
     return {
-      ...match,
-      sports: matchSports.filter((s) => s.user_id === match.id),
+      ...user,
+      sports: matchSports.filter((s) => s.user_id === user.id),
     };
   });
   console.log();

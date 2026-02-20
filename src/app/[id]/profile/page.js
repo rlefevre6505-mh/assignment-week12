@@ -9,14 +9,24 @@ import Footer from "@/components/Footer";
 import profilePageStyles from "@/app/profile/[username]/profile-page/profile-page.module.css";
 
 export default async function OtherProfilePage({ params }) {
-  const { id } = await params;
+  const { id } =  params;
+
+  const numericId=Number(id)
+
+  if(!id || isNaN(numericId)){
+    return<div>Invalid profile ID</div>
+  }
 
   const queryUser = await db.query(
     `SELECT * FROM w12_app_users WHERE id = $1`,
-    [id],
+    [numericId],
   );
   console.log("queryRows");
   console.log(queryUser.rows[0]);
+
+  if (queryUser.rows.length === 0){
+    return<div>User not found</div>
+  }
 
   //variables for database values:
   const appUserId = queryUser.rows[0].id;
