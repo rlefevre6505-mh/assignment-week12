@@ -15,7 +15,11 @@ db.query(
 <!-- README for push -->
 <!-- README -->
 
-## Project name: Week 12 Assignment - Kickabout AppDeployment Link: https://kickaboutapp.vercel.app/Repo Link: https://github.com/rlefevre6505-mh/assignment-week12
+## Project name: Week 12 Assignment - Kickabout App
+
+Deployment Link: https://kickaboutapp.vercel.app/
+
+Repo Link: https://github.com/rlefevre6505-mh/assignment-week12
 
 Presentation: https://docs.google.com/presentation/d/1D6kjNIYgTfggL-azr4zgnLq0JPysec3Ln9qeyXiqcJU/edit?slide=id.g3bf25e7698d_0_35#slide=id.g3bf25e7698d_0_35
 
