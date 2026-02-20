@@ -10,7 +10,7 @@ import profilePageStyles from "@/app/profile/[username]/profile-page/profile-pag
 import Link from "next/link";
 
 export default async function profilePage({ params }) {
-  const { username } = params;
+  const { username } = await params;
   const { userId } = await auth();
 
   const queryUser = await db.query(
@@ -44,6 +44,7 @@ export default async function profilePage({ params }) {
   const userLocations = queryUserLocations.rows[0].location_id;
   console.log("userLocations");
   console.log(userLocations);
+  console.log(username);
 
   // matching user_location with data from locations
   const locations = await db.query(
@@ -58,12 +59,11 @@ export default async function profilePage({ params }) {
 
   return (
     <>
-      
-        <header className={profilePageStyles.headerSection}>
-          <Header>
-            <NavBar />
-          </Header>
-        </header>
+      <header className={profilePageStyles.headerSection}>
+        <Header>
+          <NavBar />
+        </Header>
+      </header>
 
       <main className={profilePageStyles.mainSection}>
         <div className={profilePageStyles.profileLayout}>
@@ -82,8 +82,7 @@ export default async function profilePage({ params }) {
         </div>
       </main>
 
-        <Footer />
-      
+      <Footer />
     </>
   );
 }

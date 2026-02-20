@@ -9,7 +9,7 @@ import { db } from "../../../utils/dbConnection";
 // import { Protect, clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs";
 import MatchesFilter from "@/components/MatchesFilter";
-import {redirect} from "next/navigation"
+import { redirect } from "next/navigation";
 
 export default async function feedPage() {
   // logic to identify current user ID fron DB based on Clerk log in
@@ -25,9 +25,10 @@ export default async function feedPage() {
     `SELECT sport_id, sport_level_id
     FROM w12_user_sports
     WHERE user_id = $1`,
-    [user]
-  )
+    [user],
+  );
   const userSports = userSportsQuery.rows;
+
   // ================================
 
   const queryMatches = await db.query(
@@ -49,6 +50,7 @@ export default async function feedPage() {
   `,
     [user],
   );
+
   const matches = queryMatches.rows;
   console.table(matches);
 
@@ -64,47 +66,37 @@ export default async function feedPage() {
 
   const matchSports = sportsQuery.rows;
 
-  const matchesWithSports = matches.map((match) => {
+  const matchesWithSports = matchSports.map((match) => {
     return {
       ...match,
       sports: matchSports.filter((s) => s.user_id === match.id),
     };
   });
-
+  console.log();
   // ADDED THIS TO REPLACE PROTECT
-  if (!userId){
-    redirect("/")
+  if (!userId) {
+    redirect("/");
   }
 
-
-
   return (
- 
-      <>
-        <header className={feedStyles.headerSection}>
-          <Header>
-            <NavBar />
-          </Header>
-        </header>
+    <>
+      <header className={feedStyles.headerSection}>
+        <Header>
+          <NavBar />
+        </Header>
+      </header>
 
-        <main className={feedStyles.mainSection}>
-          <h2 className={feedStyles.pageTitle}>Your matches</h2>
+      <main className={feedStyles.mainSection}>
+        <h2 className={feedStyles.pageTitle}>Your matches</h2>
 
-          <hr className={feedStyles.lineBreak}></hr>
+        <hr className={feedStyles.lineBreak}></hr>
 
+        <section className={feedStyles.matchesSection}>
+          <MatchesFilter matches={matchesWithSports} userSports={userSports} />
+        </section>
+      </main>
 
-          <section className={feedStyles.matchesSection}>
-
-            <MatchesFilter
-              matches={matchesWithSports}
-
-              userSports={userSports}
-              />
-          </section>
-        </main>
-
-        <Footer />
-      </>
-
+      <Footer />
+    </>
   );
 }

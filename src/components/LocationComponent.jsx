@@ -82,7 +82,7 @@ export default function LocationComponent({ userid, locations, route }) {
         choices will appear. When you see it, select it!{" "}
       </h2>
       <div className={setupformStyles.form}>
-        <label for="locationSearch" className={setupformStyles.form}>
+        <label htmlForfor="locationSearch" className={setupformStyles.form}>
           Search
         </label>
         <p>{filteredLocations.length}</p>
