@@ -16,8 +16,8 @@ export default async function feedPage() {
   const { userId } = await auth();
 
   if (!userId) {
-  redirect("/");
-}
+    redirect("/");
+  }
   const queryUser = await db.query(
     `SELECT id FROM w12_app_users WHERE clerk_id = $1`,
     [userId],
@@ -38,19 +38,30 @@ export default async function feedPage() {
   const queryMatches = await db.query(
     `
     WITH filtered_locations AS (
-    SELECT * FROM w12_app_users WHERE id IN
-    (SELECT DISTINCT user_id FROM w12_user_locations WHERE location_id IN
-    (SELECT location_id FROM w12_user_locations WHERE user_id = $1)))
+    SELECT * FROM w12_app_users 
+    WHERE id IN
+    (SELECT DISTINCT user_id 
+    FROM w12_user_locations 
+    WHERE location_id IN
+    (SELECT location_id 
+    FROM w12_user_locations 
+    WHERE user_id = $1)))
     ,
     filtered_sports AS (
-    SELECT * FROM w12_app_users WHERE id IN
-    (SELECT DISTINCT user_id FROM w12_user_sports WHERE sport_id IN
-    (SELECT sport_id FROM w12_user_sports WHERE user_id = $1)))
+    SELECT * FROM w12_app_users 
+    WHERE id IN
+    (SELECT DISTINCT user_id 
+    FROM w12_user_sports 
+    WHERE sport_id IN
+    (SELECT sport_id 
+    FROM w12_user_sports 
+    WHERE user_id = $1)))
 
     SELECT *
     FROM filtered_locations
     WHERE id <> $1 
-    AND id IN (SELECT id FROM filtered_sports)
+    AND id 
+    IN (SELECT id FROM filtered_sports)
   `,
     [user],
   );
