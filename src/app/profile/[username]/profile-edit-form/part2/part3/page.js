@@ -54,10 +54,14 @@ export default async function ProfileEditFormPage3({ params }) {
   async function handleUpdate(rawFormData) {
     "use server";
 
-    (db.query(`DELETE * FROM w12_user_sports WHERE user_id = $1`), [user]);
+    try {
+      (db.query(`DELETE * FROM w12_user_sports WHERE user_id = $1`), [user]);
+    } catch (error) {
+      console.error(error);
+    }
 
     const formValues = {
-      user_id: rawFormData.get(user),
+      user_id: user,
       sport_level_id: rawFormData.get("level_1"),
       sport_id: rawFormData.get("sport_1"),
     };
@@ -70,6 +74,7 @@ export default async function ProfileEditFormPage3({ params }) {
     } catch (error) {
       console.error(error);
     }
+
     if (rawFormData.get("sport_2") && rawFormData.get("level_2")) {
       const formValues = {
         user_id: user,
